@@ -1,0 +1,17 @@
+## Interface: 50001
+## Title: Dark.Unitframes
+## Author: Darkend / Singularity / Zenedar / EU
+## Version: 0.0.1
+## Notes: Unitframes
+## RequiredDeps: Dark.Core, oUF
+
+libs\oUF\oUF.xml
+
+boot.lua
+config.lua
+
+unitCommon.lua
+unitSpecific\player.lua
+
+factory.lua
+run.lua
