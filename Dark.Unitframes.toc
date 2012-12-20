@@ -7,8 +7,8 @@
 
 libs\oUF\oUF.xml
 
-boot.lua
 config.lua
+boot.lua
 
 unitCommon.lua
 unitSpecific\player.lua
