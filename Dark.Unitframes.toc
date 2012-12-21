@@ -10,8 +10,15 @@ libs\oUF\oUF.xml
 config.lua
 boot.lua
 
-unitCommon.lua
-unitSpecific\player.lua
+tags\health.lua
+
+elements\health.lua
+elements\menu.lua
+elements\name.lua
+elements\power.lua
+elements\raidIcon.lua
+
+buildUnit.lua
 
 factory.lua
 run.lua

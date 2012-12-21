@@ -3,8 +3,10 @@ local ouf = ns.oUF or oUF
 
 local boot = function()
 
-	ns.name = "DarkUnitFrames"
 	ns.elements = {}
+	ns.tags = {}
+
+	ns.name = "DarkUnitFrames"
 	ns.core = Dark.core
 
 	setmetatable(ns.config.colors, { __index = ouf.colors})

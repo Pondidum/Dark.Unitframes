@@ -1,15 +1,19 @@
 local addon, ns = ...
-local ouf = ns.oUF or oUF
+local oUF = ns.oUF or oUF
 
 local run = function()
+	
+	for name, action in pairs(ns.tags) do
+		oUF.Tags.Methods[name] = action
+	end
 
 	for i, unit in ipairs(ns.config.units) do
 
-		ouf:RegisterStyle(ns.name .. unit:gsub("^%l", string.upper), ns)
+		oUF:RegisterStyle(ns.name .. unit:gsub("^%l", string.upper), ns)
 
 	end
 	
-	ouf:Factory(ns.factory)
+	oUF:Factory(ns.factory)
 	
 end
 
