@@ -21,7 +21,7 @@ local config = {
 		raidheader 		= { point = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0 },	 					},
 	},
 	elements = {
-		common = { "menu", "health", "power", "name", "raidIcon" },
+		common = { "menu", "health", "power", "name", "raidIcon", "castbar"},
 		player = { "combopoints" },
 	}
 }
