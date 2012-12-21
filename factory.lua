@@ -5,19 +5,19 @@ local frames = {}
 
 local spawnHelper = function(self, unit)
 
-	if ns.unitspecific[unit] then
+	-- if ns.unitspecific[unit] then
 
-		self:SetActiveStyle(ns.prefix .. unit:gsub("^%l", string.upper))
+	self:SetActiveStyle(ns.name .. unit:gsub("^%l", string.upper))
 
-	elseif ns.unitspecific[unit:match('[^%d]+')] then		--boss1 => boss
+	-- elseif ns.unitspecific[unit:match('[^%d]+')] then		--boss1 => boss
 
-		self:SetActiveStyle(ns.prefix .. unit:match('[^%d]+'):gsub("^%l", string.upper))
+	-- 	self:SetActiveStyle(ns.name .. unit:match('[^%d]+'):gsub("^%l", string.upper))
 
-	else
+	-- else
 
-		self:SetActiveStyle(ns.prefix)
+		--self:SetActiveStyle(ns.name)
 
-	end
+	-- end
 
 	return self:Spawn(unit)
 
@@ -79,7 +79,7 @@ local spawnMapping = {
 
 		create = function(self, unit) 
 
-			self:SetActiveStyle(ns.prefix .. "Raid")
+			self:SetActiveStyle(ns.name .. "Raid")
 
 			local unitWidth, unitHeight = unpack(config.layout["raidunit"].size)
 			local groupAnchor, groupXoffset, groupYoffset = unpack(config.layout["raidgroup"])
@@ -88,7 +88,7 @@ local spawnMapping = {
 
 			for i = 1, 8 do
 
-				local group = oUF:SpawnHeader(ns.prefix .. "Raid" ..i, nil, "raid,party",
+				local group = oUF:SpawnHeader(ns.name .. "Raid" ..i, nil, "raid,party",
 					'oUF-initialConfigFunction', ([[
 													self:SetWidth(%d)
 													self:SetHeight(%d)
@@ -106,7 +106,7 @@ local spawnMapping = {
 
 			end
 
-			local header = CreateFrame("Frame", "oUF_" .. ns.prefix .. "Raid", UIParent)
+			local header = CreateFrame("Frame", "oUF_" .. ns.name .. "Raid", UIParent)
 			header.raidGroups = raidGroups
 
 			return header

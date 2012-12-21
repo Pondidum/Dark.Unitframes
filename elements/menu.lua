@@ -36,4 +36,10 @@ local createMenu = function(self)
 
 end
 
-ns.menu = createMenu
+local menu = function(self)
+
+	self.menu = createMenu
+	
+end
+
+ns.elements.menu = menu

@@ -3,11 +3,13 @@ local ouf = ns.oUF or oUF
 
 local boot = function()
 
-	ns.key = "DarkUnitFrames"
-	ns.unitSpecific = {}
+	ns.name = "DarkUnitFrames"
+	ns.elements = {}
+	ns.core = Dark.core
 
 	setmetatable(ns.config.colors, { __index = ouf.colors})
-	
+	setmetatable(ns.config.elements, { __index = function(t, v) return t.common end })
+
 end
 
 boot()

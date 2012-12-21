@@ -20,6 +20,10 @@ local config = {
 		raidgroup 		= { point = { "RIGHT", -5, 0 },														},
 		raidheader 		= { point = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0 },	 					},
 	},
+	elements = {
+		common = { "menu", "health", "power", "name", "raidIcon" },
+		player = { "combopoints" },
+	}
 }
 
 ns.config = config

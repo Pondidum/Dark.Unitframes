@@ -3,9 +3,9 @@ local ouf = ns.oUF or oUF
 
 local run = function()
 
-	for unit, action in ns.unitSpecific do
+	for i, unit in ipairs(ns.config.units) do
 
-		ouf:RegisterStyle(ns.prefix .. unit:gsub("^%l", string.upper), action)
+		ouf:RegisterStyle(ns.name .. unit:gsub("^%l", string.upper), ns)
 
 	end
 	
