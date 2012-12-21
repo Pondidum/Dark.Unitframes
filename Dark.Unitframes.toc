@@ -18,6 +18,7 @@ elements\name.lua
 elements\power.lua
 elements\raidIcon.lua
 elements\castbar.lua
+elements\auras.lua
 
 buildUnit.lua
 
