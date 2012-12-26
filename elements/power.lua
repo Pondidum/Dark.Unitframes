@@ -1,4 +1,5 @@
 local addon, ns = ...
+local core = Dark.core
 
 local power = function(self)
 
@@ -7,12 +8,12 @@ local power = function(self)
 	powerBar:SetPoint("TOPRIGHT", health, "BOTTOMRIGHT", 0, -5)
 	powerBar:SetHeight(5)
 
-	powerBar:SetStatusBarTexture(ns.core.textures.normal)
-	ns.core.style.addShadow(powerBar)
+	powerBar:SetStatusBarTexture(core.textures.normal)
+	core.style.addShadow(powerBar)
 
 	local background = powerBar:CreateTexture(nil, 'BORDER')
 	background:SetAllPoints(powerBar)
-	background:SetTexture(ns.core.textures.normal)
+	background:SetTexture(core.textures.normal)
 	background.multiplier = 0.3
 
 	powerBar.bg = background 

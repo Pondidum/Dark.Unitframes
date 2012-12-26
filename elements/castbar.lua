@@ -1,6 +1,7 @@
 local addon, ns = ...
-local style = ns.core.style
-local ui = ns.core.ui
+local core = Dark.core
+local style = core.style
+local ui = core.ui
 
 local customCastTimeText = function(self, duration)
 	self.Time:SetText(("%.1f / %.1f"):format(self.channeling and duration or self.max - duration, self.max))
@@ -27,15 +28,15 @@ local createCastbar = function(self)
 	castbar:SetPoint("TOPRIGHT", self.Health, "BOTTOMRIGHT", 0, castOffset)
 	castbar:SetHeight(16)
 
-	castbar:SetStatusBarTexture(ns.core.textures.normal)
+	castbar:SetStatusBarTexture(core.textures.normal)
 	style.addShadow(castbar)
 	style.addBackground(castbar)
 
-	castbar.Text = ui.createFont(castbar, ns.core.fonts.unitframes, 12)
+	castbar.Text = ui.createFont(castbar, core.fonts.unitframes, 12)
 	castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 0)
 	castbar.Text:SetTextColor(1, 1, 1)
 
-	castbar.Time = ui.createFont(castbar, ns.core.fonts.unitframes, 12)
+	castbar.Time = ui.createFont(castbar, core.fonts.unitframes, 12)
 	castbar.Time:SetPoint("RIGHT", castbar, "RIGHT", -4, 0)
 	castbar.Time:SetTextColor(0.8, 0.8, 0.8)
 	castbar.Time:SetJustifyH("RIGHT")

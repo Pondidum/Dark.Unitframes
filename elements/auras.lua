@@ -1,4 +1,6 @@
 local addon, ns = ...
+local core = Dark.core
+
 
 local UnitAura, UnitIsFriend = UnitAura, UnitIsFriend
 
@@ -13,7 +15,7 @@ local postCreateAura = function(element, button)
 
 	button.count:SetPoint("BOTTOMRIGHT", 3, 3)
 	button.count:SetJustifyH("RIGHT")
-	button.count:SetFont(ns.core.media.fonts.unitframe, 12, "THICKOUTLINE")
+	button.count:SetFont(core.fonts.unitframe, 12, "THICKOUTLINE")
 	button.count:SetTextColor(0.84, 0.75, 0.65)
 	button.count:SetDrawLayer('OVERLAY')
 
@@ -26,7 +28,7 @@ local postCreateAura = function(element, button)
 	button.Glow:SetPoint("TOPLEFT", button, "TOPLEFT", -1, 1)
 	button.Glow:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 1, -1)
 	button.Glow:SetFrameStrata("BACKGROUND")	
-	button.Glow:SetBackdrop{edgeFile =  ns.core.media.textures.shadow, edgeSize = 3, insets = {left = 0, right = 0, top = 0, bottom = 0}}
+	button.Glow:SetBackdrop{edgeFile =  core.textures.shadow, edgeSize = 3, insets = {left = 0, right = 0, top = 0, bottom = 0}}
 	button.Glow:SetBackdropColor(0, 0, 0, 0)
 	button.Glow:SetBackdropBorderColor(0, 0, 0)
 

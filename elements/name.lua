@@ -1,8 +1,9 @@
 local addon, ns = ...
+local core = Dark.core
 
 local name = function(self)
 
-	local name =  ns.core.ui.createFont(self.Health, ns.core.fonts.unitframe, 12, "OUTLINE")
+	local name =  core.ui.createFont(self.Health, core.fonts.unitframes, 12, "OUTLINE")
 	
 	name:SetPoint("LEFT", self.Health, "LEFT", 4, 0)
 	name:SetPoint("TOP", self.Health, "TOP", 4, 0)
