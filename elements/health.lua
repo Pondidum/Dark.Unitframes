@@ -1,4 +1,4 @@
-local addon, ns = ..
+local addon, ns = ...
 local core = Dark.core
 
 local health = function(self)

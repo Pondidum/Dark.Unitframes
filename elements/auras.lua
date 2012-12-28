@@ -15,7 +15,7 @@ local postCreateAura = function(element, button)
 
 	button.count:SetPoint("BOTTOMRIGHT", 3, 3)
 	button.count:SetJustifyH("RIGHT")
-	button.count:SetFont(core.fonts.unitframe, 12, "THICKOUTLINE")
+	button.count:SetFont(core.fonts.unitframes, 12, "THICKOUTLINE")
 	button.count:SetTextColor(0.84, 0.75, 0.65)
 	button.count:SetDrawLayer('OVERLAY')
 

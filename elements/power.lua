@@ -1,32 +1,32 @@
 local addon, ns = ...
 local core = Dark.core
 
-local power = function(self)
+local createPower = function(self)
 
-	local powerBar = CreateFrame('StatusBar', nil, self)
-	powerBar:SetPoint("TOPLEFT", health, "BOTTOMLEFT", 0, -5)
-	powerBar:SetPoint("TOPRIGHT", health, "BOTTOMRIGHT", 0, -5)
-	powerBar:SetHeight(5)
-
-	powerBar:SetStatusBarTexture(core.textures.normal)
-	core.style.addShadow(powerBar)
-
-	local background = powerBar:CreateTexture(nil, 'BORDER')
-	background:SetAllPoints(powerBar)
-	background:SetTexture(core.textures.normal)
-	background.multiplier = 0.3
-
-	powerBar.bg = background 
-
-	powerBar.frequentUpdates = true
-	powerBar.Smooth = true
-
-	powerBar.colorDisconnected = true	
-	powerBar.colorTapping = true
-	powerBar.colorPowerBar = true
+	local power = CreateFrame('StatusBar', nil, self)
+	power:SetPoint("TOPLEFT", self.Health, "BOTTOMLEFT", 0, -5)
+	power:SetPoint("TOPRIGHT", self.Health, "BOTTOMRIGHT", 0, -5)
+	power:SetHeight(5)
+	
+	power:SetStatusBarTexture(core.textures.normal)
+	core.style.addShadow(power)
+	
+	local bg = power:CreateTexture(nil, 'BORDER')
+	bg:SetAllPoints(power)
+	bg:SetTexture(core.textures.normal)
+	bg.multiplier = 0.3
+	
+	power.bg = bg 
+	
+	power.frequentUpdates = true
+	power.Smooth = true
+	
+	power.colorDisconnected = true	
+	power.colorTapping = true
+	power.colorPower = true
 
 	self.Power = power
 
 end
 
-ns.elements.power = power
+ns.elements.power = createPower

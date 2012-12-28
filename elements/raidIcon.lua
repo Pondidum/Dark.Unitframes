@@ -13,4 +13,4 @@ local raidIcon = function(self)
 
 end
 
-ns.raidIcon = raidIcon
+ns.elements.raidIcon = raidIcon

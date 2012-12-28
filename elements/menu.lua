@@ -2,7 +2,7 @@ local addon, ns = ...
 
 local disabledUnits = {
 	targettarget = true,
-	focustarget = true
+	focustarget = true,
 	pettarget = true,
 }
 
