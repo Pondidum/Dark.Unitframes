@@ -9,7 +9,7 @@ local run = function()
 
 	for i, unit in ipairs(ns.config.units) do
 
-		oUF:RegisterStyle(ns.name .. unit:gsub("^%l", string.upper), ns)
+		oUF:RegisterStyle(ns.name .. unit:gsub("^%l", string.upper), ns.buildUnit)
 
 	end
 	
