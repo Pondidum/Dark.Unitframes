@@ -1,24 +1,19 @@
 local addon, ns = ...
+local oUF = ns.oUF or oUF
 
-local fake = function() and
+local config = ns.config
+
+local fake = function() end
 local frames = {}
 
 local spawnHelper = function(self, unit)
 
-	-- if ns.unitspecific[unit] then
-
-	self:SetActiveStyle(ns.name .. unit:gsub("^%l", string.upper))
-
-	-- elseif ns.unitspecific[unit:match('[^%d]+')] then		--boss1 => boss
-
-	-- 	self:SetActiveStyle(ns.name .. unit:match('[^%d]+'):gsub("^%l", string.upper))
-
-	-- else
-
-		--self:SetActiveStyle(ns.name)
-
-	-- end
-
+	if unit:match("%d") then
+		self:SetActiveStyle(ns.name .. unit:gsub("%d", ''):gsub("^%l", string.upper))
+	else
+		self:SetActiveStyle(ns.name .. unit:gsub("^%l", string.upper))	
+	end
+	
 	return self:Spawn(unit)
 
 end
@@ -62,18 +57,18 @@ local spawnMapping = {
 			local bossPoint, bossTarget, bossTargetPoint, bossXoffset, bossYoffset = unpack(config.layout["bossunit"].point)
 			local bossWidth, bossHeight = unpack(config.layout["bossunit"].size)
 
-			unit[1]:SetPoint(point, target, targetPoint, xoffset, yoffset)
-			unit[1]:SetSize(bossWidth, bossHeight)
+			self[1]:SetPoint(point, target, targetPoint, xoffset, yoffset)
+			self[1]:SetSize(bossWidth, bossHeight)
 			
 
-			for i = 2, #unit do
-				unit[i]:SetPoint(bossPoint, unit[i - 1], bossTargetPoint, bossXoffset, bossYoffset)
-				unit[i]:SetSize(bossWidth, bossHeight)
+			for i = 2, #self do
+				self[i]:SetPoint(bossPoint, self[i - 1], bossTargetPoint, bossXoffset, bossYoffset)
+				self[i]:SetSize(bossWidth, bossHeight)
 			end
 
 		end,
 
-	}
+	},
 
 	raid = {
 
@@ -115,7 +110,7 @@ local spawnMapping = {
 
 		layout = function(self, unit)
 			
-			local groups = unit.groups
+			local groups = self.raidGroups
 			local unitAnchor, unitOther, unitOtherAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
 
 			for i, group in ipairs(groups) do
@@ -130,7 +125,7 @@ local spawnMapping = {
 
 		end,
 
-	}
+	},
 	
 	default = {
 
@@ -160,20 +155,20 @@ local spawnMapping = {
 
 		end,
 
-	}
+	},
 
 }
 
 setmetatable(spawnMapping, { __index = function(t, k) return t.default end})
 local factory = function(self)
-
+	
 	local config = ns.config
 
 	for i, unit in ipairs(config.units) do
 		frames[unit] = spawnMapping[unit].create(self, unit)
 	end
 
-	for unit, frame in ipairs(frames)
+	for unit, frame in pairs(frames) do
 		spawnMapping[unit].layout(frame, unit)
 	end
 
