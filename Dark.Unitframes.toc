@@ -3,7 +3,7 @@
 ## Author: Darkend / Singularity / Zenedar / EU
 ## Version: 0.0.1
 ## Notes: Unitframes
-## RequiredDeps: Dark.Core, oUF
+## RequiredDeps: Dark.Core
 
 libs\oUF\oUF.xml
 
