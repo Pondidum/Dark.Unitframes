@@ -1,8 +1,8 @@
 local addon, ns = ...
 
 
-local largeFrame = {240, 18}
-local smallFrame = {132, 18}
+local largeFrame = {240, 28}
+local smallFrame = {132, 28}
 
 local config = {
 
@@ -21,11 +21,26 @@ local config = {
 		raidheader 		= { point = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0 },	 					},
 	},
 	elements = {
-		common = { "menu", "health", "power", "name", "raidIcon", "castbar"},
-		player = { "debuffs", "combopoints" },
+		common = { "menu", "health", "power", "name", "raidIcon" }, --, "castbar"},
+		player = { "debuffs", "castbar" }, --"combopoints" },
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
-	}
+	}, 
+	colors = {
+		power = {
+			["MANA"] = {0.31, 0.45, 0.63},
+			["RAGE"] = {0.69, 0.31, 0.31},
+			["FOCUS"] = {0.71, 0.43, 0.27},
+			["ENERGY"] = {0.65, 0.63, 0.35},
+			["RUNES"] = {0.55, 0.57, 0.61},
+			["RUNIC_POWER"] = {0, 0.82, 1},
+			["AMMOSLOT"] = {0.8, 0.6, 0},
+			["FUEL"] = {0, 0.55, 0.5},
+			["POWER_TYPE_STEAM"] = {0.55, 0.57, 0.61},
+			["POWER_TYPE_PYRITE"] = {0.60, 0.09, 0.17},
+		},
+	},
+
 }
 
 ns.config = config
