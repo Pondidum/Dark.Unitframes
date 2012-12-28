@@ -8,7 +8,7 @@
 libs\oUF\oUF.xml
 
 config.lua
-boot.lua
+initialise.lua
 
 tags\health.lua
 
