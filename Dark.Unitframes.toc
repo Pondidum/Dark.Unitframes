@@ -6,6 +6,7 @@
 ## RequiredDeps: Dark.Core
 
 libs\oUF\oUF.xml
+libs\oUF_Dark\oUF_Dark.xml
 
 config.lua
 initialise.lua
