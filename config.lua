@@ -1,7 +1,7 @@
 local addon, ns = ...
 
 
-local largeFrame = {240, 28}
+local largeFrame = {239, 28}
 local smallFrame = {132, 28}
 
 local config = {
@@ -22,7 +22,7 @@ local config = {
 	},
 	elements = {
 		common = { "menu", "health", "power", "name", "raidIcon" }, --, "castbar"},
-		player = { "debuffs", "castbar" }, --"combopoints" },
+		player = { "debuffs", "castbar", "classSpecific" }, --"combopoints" },
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
 	}, 
