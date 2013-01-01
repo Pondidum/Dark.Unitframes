@@ -1,11 +1,11 @@
 local addon, ns = ...
 
 
-local largeFrame = {239, 28}
+local largeFrame = {237, 28}
 local smallFrame = {132, 28}
 
 local config = {
-
+	spacing = 3,
 	units = {"player", "pet", "target", "focus", "targettarget", "focustarget", "boss", "raid"},
 	layout = {
 		player 			= { point = { "RIGHT", UIParent, "CENTER", -100, -50 }, 		size = largeFrame 	},
@@ -22,7 +22,7 @@ local config = {
 	},
 	elements = {
 		common = { "menu", "health", "power", "name", "raidIcon" }, --, "castbar"},
-		player = { "debuffs", "castbar", "classSpecific" }, --"combopoints" },
+		player = { "classSpecific", "debuffs", "castbar"  }, --"combopoints" },
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
 	}, 
