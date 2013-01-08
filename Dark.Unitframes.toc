@@ -21,6 +21,10 @@ elements\raidIcon.lua
 elements\castbar.lua
 elements\auras.lua
 
+elements\classSpecific.lua
+elements\classSpecific.deathknight.lua
+elements\classSpecific.shaman.lua
+
 buildUnit.lua
 
 factory.lua
