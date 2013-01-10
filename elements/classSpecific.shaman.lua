@@ -21,9 +21,9 @@ local shamanSpecific = function(self, unit)
 
 	end
 
-	totem[1]:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 0)
+	totems[1]:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 0)
 	for i = 2, MAX_TOTEMS do 
-		totem[i]:SetPoint("LEFT", totem[i - 1], "RIGHT", ns.config.spacing, 0)
+		totems[i]:SetPoint("LEFT", totems[i - 1], "RIGHT", ns.config.spacing, 0)
 	end
 
 	self.DarkTotems = totems

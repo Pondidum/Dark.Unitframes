@@ -7,6 +7,7 @@
 
 libs\oUF\oUF.xml
 libs\oUF_Dark\oUF_Dark.xml
+libs\oUF_WarlockSpecBars\oUF_WarlockSpecBars.lua
 
 config.lua
 initialise.lua
@@ -24,6 +25,7 @@ elements\auras.lua
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua
 elements\classSpecific.shaman.lua
+elements\classSpecific.warlock.lua
 
 buildUnit.lua
 
