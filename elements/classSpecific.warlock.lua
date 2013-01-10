@@ -27,7 +27,6 @@ local warlockSpecific = function(self, unit)
 		end
 	end
 	
-	print(select(4, frame[4]:GetPoint()))
 	self.WarlockSpecBars = frame
 
 end
