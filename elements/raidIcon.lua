@@ -11,6 +11,22 @@ local raidIcon = function(self)
 
 	self.RaidIcon = raidIcon
 
+	
+	local leader = self.Health:CreateTexture(nil, "OVERLAY")
+	leader:SetHeight(14)
+	leader:SetWidth(14)
+	leader:SetPoint("CENTER", self.Health, "CENTER", -15, 1)
+
+	self.Leader = leader
+
+
+	local masterLooter = self.Health:CreateTexture(nil, "OVERLAY")
+	masterLooter:SetHeight(14)
+	masterLooter:SetWidth(14)
+	masterLooter:SetPoint("CENTER", self.Health, "CENTER", 15, 1)
+
+	self.MasterLooter = masterLooter
+
 end
 
 ns.elements.raidIcon = raidIcon
