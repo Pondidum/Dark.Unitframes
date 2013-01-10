@@ -42,18 +42,12 @@ local deathknightSpecific = function(self, unit)
 
 		rune:SetPoint("BOTTOM", runes, "BOTTOM", 0, delta)
 
-
 		runes[i] = rune
 
 	end
-
-	-- runes[1]:SetPoint("BOTTOM", runes, "BOTTOM", 0, 0)
-	-- runes[3]:SetPoint("BOTTOM", runes[1], "TOP", 0, ns.config.spacing)
-	-- runes[5]:SetPoint("BOTTOM", runes[3], "TOP", 0, ns.config.spacing)
 
 	self.DarkRunes = runes
 
 end
 
 ns.elements.specific.deathknight = deathknightSpecific
-
