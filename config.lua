@@ -25,6 +25,7 @@ local config = {
 		player = { "classSpecific", "debuffs", "castbar"  }, --"combopoints" },
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
+		pet    = { "buffs" }
 	}, 
 	colors = {
 		power = {
