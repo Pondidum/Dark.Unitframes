@@ -6,7 +6,6 @@ local RUNE_HEIGHT = 8
 
 local deathknightSpecific = function(self, unit)
 
-	print("dk runes")
 	local anchor = self.Health
 	local runes = CreateFrame("Frame", nil, self)
 
@@ -37,8 +36,6 @@ local deathknightSpecific = function(self, unit)
 		local j = i - 1
 		local yOffset = (j - (j % 2)) / 2
 		local delta = (yOffset * RUNE_HEIGHT) + (yOffset * ns.config.spacing)
-
-		print("yOff", yOffset, "delta", delta)
 
 		rune:SetPoint("BOTTOM", runes, "BOTTOM", 0, delta)
 
