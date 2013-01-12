@@ -2,24 +2,6 @@ local addon, ns = ...
 local config = ns.config
 
 local elements = ns.elements
-local common = config.elements.common 	--needed once per unit
-
-local applyCommon = function(specific)
-
-	local result = {}
-
-	for k, v in ipairs(common) do
-		table.insert(result, v)
-	end
-
-	for k,v in ipairs(specific) do
-		table.insert(result, v)
-	end
-	
-	return result
-
-end
-
 
 local buildUnit = function(self, unit, ...)
 
@@ -29,7 +11,7 @@ local buildUnit = function(self, unit, ...)
 
 	self.colors = config.colors
 
-	local unitConfig = applyCommon(config.elements[unit])
+	local unitConfig = config.elements[unit]
 
 	for i, element in ipairs(unitConfig) do
 
