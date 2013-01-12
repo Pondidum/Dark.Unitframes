@@ -1,7 +1,7 @@
 local addon, ns = ...
 
 --local api
-local UnitHealth, UnitIsConnected, UnitIsDead, UnitIsGhost, UnitHealthMax = UnitHealth, UnitIsConnected, UnitIsDead, UnitIsGhost, UnitHealthMax
+--local UnitHealth, UnitIsConnected, UnitIsDead, UnitIsGhost, UnitHealthMax = UnitHealth, UnitIsConnected, UnitIsDead, UnitIsGhost, UnitHealthMax
 
 local shortValue = function(v)
 
@@ -48,24 +48,9 @@ local tag = function(unit)
 	local max = UnitHealthMax(unit)
 
 	if min ~= max then
-
-		if unit == "player" or unit == "target" or (unit and unit:find("boss%d")) then
-			return shortValue(min) .. " | " .. floor(min / max * 100) .. "%"
-
-		elseif (unit and unit:find("arena%d")) or unit == "focus" or unit == "focustarget" then
-			return shortValue(min)
-
-		else
-			return shortValueNegative(max-min)
-
-		end
+		return shortValue(min) .. " | " .. floor(min / max * 100) .. "%"
 	else
-		if  unit == "player" or unit == "target" or unit == "focus"  or unit == "focustarget" or (unit and unit:find("arena%d")) then
-			return shortValue(max)
-
-		else
-			return " "
-		end
+		return shortValue(max)
 	end
 
 end
