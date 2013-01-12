@@ -18,148 +18,143 @@ local spawnHelper = function(self, unit)
 
 end
 
-local spawnMapping = {
+local createBoss = function(self, unit)
 
-	boss = {
+	local units = {}
 
-		create = function(self, unit)
+	for i = 1, MAX_BOSS_FRAMES do
 
-			local units = {}
+		local modelName = "Boss" .. i .. "TargetFrame"
+		local model = _G[modelName]
 
-			for i = 1, MAX_BOSS_FRAMES do
+		model:UnregisterAllEvents()
+		model.Show = fake
+		model:Hide()
 
-				local modelName = "Boss" .. i .. "TargetFrame"
-				local model = _G[modelName]
+		_G[modelName .. "HealthBar"]:UnregisterAllEvents()
+		_G[modelName .. "ManaBar"]:UnregisterAllEvents()
 
-				model:UnregisterAllEvents()
-				model.Show = fake
-				model:Hide()
+		units[i] = spawnHelper(self, "boss" .. i)
 
-				_G[modelName .. "HealthBar"]:UnregisterAllEvents()
-				_G[modelName .. "ManaBar"]:UnregisterAllEvents()
+	end
 
-				units[i] = spawnHelper(self, "boss" .. i)
+	return units
 
-			end
+end
 
-			return units
+local layoutBoss = function(self, unit)
 
-		end,
+	local point, target, targetPoint, xoffset, yoffset = unpack(config.layout["bossheader"].point)
 
-		layout = function(self, unit)
+	if type(target) == "string" then
+		target = frames[target]
+	end
 
-			local point, target, targetPoint, xoffset, yoffset = unpack(config.layout["bossheader"].point)
+	local bossPoint, bossTarget, bossTargetPoint, bossXoffset, bossYoffset = unpack(config.layout["bossunit"].point)
+	local bossWidth, bossHeight = unpack(config.layout["bossunit"].size)
 
-			if type(target) == "string" then
-				target = frames[target]
-			end
-
-			local bossPoint, bossTarget, bossTargetPoint, bossXoffset, bossYoffset = unpack(config.layout["bossunit"].point)
-			local bossWidth, bossHeight = unpack(config.layout["bossunit"].size)
-
-			self[1]:SetPoint(point, target, targetPoint, xoffset, yoffset)
-			self[1]:SetSize(bossWidth, bossHeight)
-			
-
-			for i = 2, #self do
-				self[i]:SetPoint(bossPoint, self[i - 1], bossTargetPoint, bossXoffset, bossYoffset)
-				self[i]:SetSize(bossWidth, bossHeight)
-			end
-
-		end,
-
-	},
-
-	raid = {
-
-		create = function(self, unit) 
-
-			self:SetActiveStyle(ns.name .. "Raid")
-
-			local unitWidth, unitHeight = unpack(config.layout["raidunit"].size)
-			local groupAnchor, groupXoffset, groupYoffset = unpack(config.layout["raidgroup"])
-
-			local raidGroups = {}
-
-			for i = 1, 8 do
-
-				local group = oUF:SpawnHeader(ns.name .. "Raid" ..i, nil, "raid,party",
-					'oUF-initialConfigFunction', ([[
-													self:SetWidth(%d)
-													self:SetHeight(%d)
-												 ]]):format(unitWidth, unitHeight),
-					'showPlayer', true,
-					'showSolo', true,
-					'showParty', true,
-					'showRaid', true,
-					'xoffset', groupXoffset,
-					'yOffset', groupYoffset,
-					'point', groupAnchor,
-					'groupFilter', i)
-
-				raidGroups[i] = group
-
-			end
-
-			local header = CreateFrame("Frame", "oUF_" .. ns.name .. "Raid", UIParent)
-			header.raidGroups = raidGroups
-
-			return header
-
-		end,
-
-		layout = function(self, unit)
-			
-			local groups = self.raidGroups
-			local unitAnchor, unitOther, unitOtherAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
-
-			for i, group in ipairs(groups) do
-
-				if i == 1 then
-					group:SetPoint(unitAnchor, raidHeader, unitAnchor, 0, 0)
-				else
-					group:SetPoint(unitAnchor, groups[i-1], unitOtherAnchor, unitXoffset, unitYoffset)
-				end
-
-			end
-
-		end,
-
-	},
+	self[1]:SetPoint(point, target, targetPoint, xoffset, yoffset)
+	self[1]:SetSize(bossWidth, bossHeight)
 	
-	default = {
 
-		create = function(self, unit)
-			return spawnHelper(self, unit)
-		end,
+	for i = 2, #self do
+		self[i]:SetPoint(bossPoint, self[i - 1], bossTargetPoint, bossXoffset, bossYoffset)
+		self[i]:SetSize(bossWidth, bossHeight)
+	end
 
-		layout = function(self, unit)
-			
-			local conf = config.layout[unit]
+end
 
-			if conf.point then
+local createRaid = function(self, unit) 
 
-				local point, target, targetPoint, xoffset, yoffset = unpack(conf.point)
+	self:SetActiveStyle(ns.name .. "Raid")
 
-				if type(target) == "string" then
-					target = frames[target]
-				end
+	local unitWidth, unitHeight = unpack(config.layout["raidunit"].size)
+	local groupAnchor, groupXoffset, groupYoffset = unpack(config.layout["raidgroup"])
 
-				self:SetPoint(point, target, targetPoint, xoffset, yoffset)
+	local raidGroups = {}
 
-			end
+	for i = 1, 8 do
 
-			if conf.size then
-				self:SetSize(unpack(conf.size))
-			end
+		local group = oUF:SpawnHeader(ns.name .. "Raid" ..i, nil, "raid,party",
+			'oUF-initialConfigFunction', ([[
+											self:SetWidth(%d)
+											self:SetHeight(%d)
+										 ]]):format(unitWidth, unitHeight),
+			'showPlayer', true,
+			'showSolo', true,
+			'showParty', true,
+			'showRaid', true,
+			'xoffset', groupXoffset,
+			'yOffset', groupYoffset,
+			'point', groupAnchor,
+			'groupFilter', i)
 
-		end,
+		raidGroups[i] = group
 
-	},
+	end
 
-}
+	local header = CreateFrame("Frame", "oUF_" .. ns.name .. "Raid", UIParent)
+	header.raidGroups = raidGroups
 
-setmetatable(spawnMapping, { __index = function(t, k) return t.default end})
+	return header
+
+end
+
+local layoutRaid = function(self, unit)
+	
+	local groups = self.raidGroups
+	local unitAnchor, unitOther, unitOtherAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
+
+	for i, group in ipairs(groups) do
+
+		if i == 1 then
+			group:SetPoint(unitAnchor, raidHeader, unitAnchor, 0, 0)
+		else
+			group:SetPoint(unitAnchor, groups[i-1], unitOtherAnchor, unitXoffset, unitYoffset)
+		end
+
+	end
+
+end
+
+
+local createDefault = function(self, unit)
+	return spawnHelper(self, unit)
+end
+
+local layoutDefault function(self, unit)
+	
+	local conf = config.layout[unit]
+
+	if conf.point then
+
+		local point, target, targetPoint, xoffset, yoffset = unpack(conf.point)
+
+		if type(target) == "string" then
+			target = frames[target]
+		end
+
+		self:SetPoint(point, target, targetPoint, xoffset, yoffset)
+
+	end
+
+	if conf.size then
+		self:SetSize(unpack(conf.size))
+	end
+
+end
+
+local spawnMapping = setmetatable({
+	default = { create = createDefault, layout = layoutDefault },
+	boss 	= { create = createBoss, 	layout = layoutBoss },
+	raid 	= { create = createRaid, 	layout = layoutRaid },
+}, 
+{ 
+	__index = function(t, k) 
+		return t.default 
+	end
+})
+
 local factory = function(self)
 	
 	local config = ns.config
