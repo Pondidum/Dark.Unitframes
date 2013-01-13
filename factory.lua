@@ -69,8 +69,8 @@ local createRaid = function(self, unit)
 	self:SetActiveStyle(ns.name .. "Raid")
 
 	local unitWidth, unitHeight = unpack(config.layout["raidunit"].size)
-	local groupAnchor, groupXoffset, groupYoffset = unpack(config.layout["raidgroup"])
-
+	local unitAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
+	
 	local raidGroups = {}
 
 	for i = 1, 8 do
@@ -84,9 +84,9 @@ local createRaid = function(self, unit)
 			'showSolo', true,
 			'showParty', true,
 			'showRaid', true,
-			'xoffset', groupXoffset,
-			'yOffset', groupYoffset,
-			'point', groupAnchor,
+			'xOffset', unitXoffset,
+			'yOffset', unitYoffset,
+			'point', unitAnchor,
 			'groupFilter', i)
 
 		raidGroups[i] = group
@@ -107,14 +107,14 @@ local layoutRaid = function(self, unit)
 		headerOther = frames[headerOther]
 	end
 
-	local unitAnchor, unitOther, unitOtherAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
+	local groupAnchor, unitOther, groupOtherAnchor, groupXoffset, groupYoffset = unpack(config.layout["raidgroup"].point)
 
 	for i, group in ipairs(groups) do
 
 		if i == 1 then
 			group:SetPoint(headerAnchor, headerOther, headerOtherAnchor, headerXoffset, headerYoffset)
 		else
-			group:SetPoint(unitAnchor, groups[i-1], unitOtherAnchor, unitXoffset, unitYoffset)
+			group:SetPoint(groupAnchor, groups[i-1], groupOtherAnchor, groupXoffset, groupYoffset)
 		end
 
 	end	

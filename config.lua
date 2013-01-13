@@ -1,11 +1,11 @@
 local addon, ns = ...
 
-
+local spacing = 3
 local largeFrame = {237, 28}
 local smallFrame = {132, 28}
 
 local config = {
-	spacing = 3,
+	spacing = spacing,
 	units = {"player", "pet", "target", "focus", "targettarget", "focustarget", "boss", "raid"},
 	layout = {
 		player 			= { point = { "RIGHT", UIParent, "CENTER", -150, -50 }, 		size = largeFrame 	},
@@ -14,11 +14,11 @@ local config = {
 		pet 			= { point = { "RIGHT", "player", "LEFT", -25, 0 }, 				size = smallFrame 	},
 		targettarget 	= { point = { "LEFT", "target", "RIGHT", 25, 0 }, 				size = smallFrame 	},
 		focustarget 	= { point = { "LEFT", "focus", "RIGHT", 25, 0 }, 				size = smallFrame 	},
-		bossunit		= { point = { "TOPLEFT", "", "BOTTOMLEFT", 0, 5 }, 				size = smallFrame 	},
+		bossunit		= { point = { "TOPLEFT", "", "BOTTOMLEFT", 0, spacing }, 		size = smallFrame 	},
 		bossheader		= {	point = { "LEFT", UIParent, "LEFT", 0, 0 }, 									},
-		raidunit 		= { point = { "TOPRIGHT", "", "BOTTOMRIGHT", 0, -5}, 			size = {132, 18} 	},
-		raidgroup 		= { point = { "TOP", 0, 5 },														},
-		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", 0, 0 },	 					},
+		raidunit 		= { point = { "TOP", 0, -spacing }, 							size = {132, 18} 	},
+		raidgroup 		= { point = { "TOP", "", "BOTTOM", 0, -spacing},									},
+		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", 0, 0 },	 				},
 	},
 	elements = {
 		common = { "menu", "health", "power", "name", "castbar", "raidIcon" }, --, "castbar"},
@@ -26,7 +26,7 @@ local config = {
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
 		pet    = { "buffs" },
-		raid   = { "range" },
+		raid   = { "range", remove = {"power", "castbar" }},
 	}, 
 	colors = {
 		power = {

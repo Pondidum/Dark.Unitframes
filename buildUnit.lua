@@ -2,9 +2,13 @@ local addon, ns = ...
 local config = ns.config
 
 local elements = ns.elements
-local commonConfig = config.elements.common
 
-local runElement = function(self, element, unit, ...)
+
+local runElement = function(self, ignoreElements, element, unit, ...)
+
+	if tContains(ignoreElements, element) then
+		return
+	end
 
 	if elements[element] then
 		elements[element](self, unit, ...)
@@ -22,14 +26,17 @@ local buildUnit = function(self, unit, ...)
 
 	self.colors = config.colors
 
+	local unitConfig = config.elements[unit]
+	local ignoreElements = unitConfig.remove or {}
+
+	local commonConfig = config.elements.common
+
 	for i, element in ipairs(commonConfig) do
-		runElement(self, element, unit, ...)
+		runElement(self, ignoreElements, element, unit, ...)
 	end
 
-	local unitConfig = config.elements[unit]
-
 	for i, element in ipairs(unitConfig) do
-		runElement(self, element, unit, ...)
+		runElement(self, ignoreElements, element, unit, ...)
 	end
 
 end
