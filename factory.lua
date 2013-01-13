@@ -129,7 +129,7 @@ local createDefault = function(self, unit)
 	return spawnHelper(self, unit)
 end
 
-local layoutDefault function(self, unit)
+local layoutDefault = function(self, unit)
 	
 	local conf = config.layout[unit]
 
