@@ -8,9 +8,9 @@ local config = {
 	spacing = 3,
 	units = {"player", "pet", "target", "focus", "targettarget", "focustarget", "boss", "raid"},
 	layout = {
-		player 			= { point = { "RIGHT", UIParent, "CENTER", -100, -50 }, 		size = largeFrame 	},
-		target 			= { point = { "LEFT", UIParent, "CENTER", 100, -50 }, 			size = largeFrame 	},
-		focus 			= { point = { "LEFT", UIParent, "CENTER", 100, -150 }, 			size = largeFrame 	},
+		player 			= { point = { "RIGHT", UIParent, "CENTER", -150, -50 }, 		size = largeFrame 	},
+		target 			= { point = { "LEFT", UIParent, "CENTER", 150, -50 }, 			size = largeFrame 	},
+		focus 			= { point = { "LEFT", UIParent, "CENTER", 150, -150 }, 			size = largeFrame 	},
 		pet 			= { point = { "RIGHT", "player", "LEFT", -25, 0 }, 				size = smallFrame 	},
 		targettarget 	= { point = { "LEFT", "target", "RIGHT", 25, 0 }, 				size = smallFrame 	},
 		focustarget 	= { point = { "LEFT", "focus", "RIGHT", 25, 0 }, 				size = smallFrame 	},
@@ -21,8 +21,8 @@ local config = {
 		raidheader 		= { point = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0 },	 					},
 	},
 	elements = {
-		common = { "menu", "health", "power", "name", "raidIcon" }, --, "castbar"},
-		player = { "classSpecific", "debuffs", "castbar"  }, --"combopoints" },
+		common = { "menu", "health", "power", "name", "castbar", "raidIcon" }, --, "castbar"},
+		player = { "classSpecific", "debuffs"  }, --"combopoints" },
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
 		pet    = { "buffs" }
