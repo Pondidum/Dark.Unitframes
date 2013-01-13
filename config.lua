@@ -16,7 +16,7 @@ local config = {
 		focustarget 	= { point = { "LEFT", "focus", "RIGHT", 25, 0 }, 				size = smallFrame 	},
 		bossunit		= { point = { "TOPLEFT", "", "BOTTOMLEFT", 0, 5 }, 				size = smallFrame 	},
 		bossheader		= {	point = { "LEFT", UIParent, "LEFT", 0, 0 }, 									},
-		raidunit 		= { point = { "TOPRIGHT", "", "BOTTOMRIGHT", 0, -5}, 			size = smallFrame 	},
+		raidunit 		= { point = { "TOPRIGHT", "", "BOTTOMRIGHT", 0, -5}, 			size = {132, 18} 	},
 		raidgroup 		= { point = { "TOP", 0, 5 },														},
 		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", 0, 0 },	 					},
 	},
