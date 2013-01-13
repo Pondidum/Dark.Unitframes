@@ -4,8 +4,8 @@ local core = Dark.core
 local createPower = function(self)
 
 	local power = CreateFrame('StatusBar', nil, self)
-	power:SetPoint("TOPLEFT", self.Health, "BOTTOMLEFT", 0, -5)
-	power:SetPoint("TOPRIGHT", self.Health, "BOTTOMRIGHT", 0, -5)
+	power:SetPoint("TOPLEFT", self.Health, "BOTTOMLEFT", 0, -ns.config.spacing)
+	power:SetPoint("TOPRIGHT", self.Health, "BOTTOMRIGHT", 0, -ns.config.spacing)
 	power:SetHeight(5)
 	
 	power:SetStatusBarTexture(core.textures.normal)
