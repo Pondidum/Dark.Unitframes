@@ -21,6 +21,7 @@ elements\power.lua
 elements\raidIcon.lua
 elements\castbar.lua
 elements\auras.lua
+elements\range.lua
 
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua
