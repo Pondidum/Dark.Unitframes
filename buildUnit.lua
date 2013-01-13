@@ -2,6 +2,17 @@ local addon, ns = ...
 local config = ns.config
 
 local elements = ns.elements
+local commonConfig = config.elements.common
+
+local runElement = function(self, element, unit, ...)
+
+	if elements[element] then
+		elements[element](self, unit, ...)
+	else
+		print("unkown", element)
+	end
+
+end
 
 local buildUnit = function(self, unit, ...)
 
@@ -11,15 +22,14 @@ local buildUnit = function(self, unit, ...)
 
 	self.colors = config.colors
 
+	for i, element in ipairs(commonConfig) do
+		runElement(self, element, unit, ...)
+	end
+
 	local unitConfig = config.elements[unit]
 
 	for i, element in ipairs(unitConfig) do
-
-		if elements[element] then
-			elements[element](self, unit, ...)
-		else
-			print("unkown", element)
-		end
+		runElement(self, element, unit, ...)
 	end
 
 end
