@@ -10,7 +10,7 @@ local config = {
 	layout = {
 		player 			= { point = { "RIGHT", UIParent, "CENTER", -150, -50 }, 		size = largeFrame 	},
 		target 			= { point = { "LEFT", UIParent, "CENTER", 150, -50 }, 			size = largeFrame 	},
-		focus 			= { point = { "LEFT", UIParent, "CENTER", 150, -150 }, 			size = largeFrame 	},
+		focus 			= { point = { "LEFT", UIParent, "CENTER", 150, 150 }, 			size = largeFrame 	},
 		pet 			= { point = { "RIGHT", "player", "LEFT", -25, 0 }, 				size = smallFrame 	},
 		targettarget 	= { point = { "LEFT", "target", "RIGHT", 25, 0 }, 				size = smallFrame 	},
 		focustarget 	= { point = { "LEFT", "focus", "RIGHT", 25, 0 }, 				size = smallFrame 	},
@@ -18,7 +18,7 @@ local config = {
 		bossheader		= {	point = { "LEFT", UIParent, "LEFT", 0, 0 }, 									},
 		raidunit 		= { point = { "TOP", 0, -spacing }, 							size = {132, 18} 	},
 		raidgroup 		= { point = { "TOP", "", "BOTTOM", 0, -spacing},									},
-		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", 0, 0 },	 				},
+		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -spacing, 0 },	 				},
 	},
 	elements = {
 		common = { "menu", "health", "power", "name", "castbar", "raidIcon" }, --, "castbar"},
