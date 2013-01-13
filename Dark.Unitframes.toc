@@ -8,6 +8,7 @@
 libs\oUF\oUF.xml
 libs\oUF_Dark\oUF_Dark.xml
 libs\oUF_WarlockSpecBars\oUF_WarlockSpecBars.lua
+libs\oUF_Experience\oUF_Experience.lua
 
 config.lua
 initialise.lua
@@ -22,6 +23,7 @@ elements\raidIcon.lua
 elements\castbar.lua
 elements\auras.lua
 elements\range.lua
+elements\experience.lua
 
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua

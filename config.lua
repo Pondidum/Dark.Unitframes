@@ -22,7 +22,7 @@ local config = {
 	},
 	elements = {
 		common = { "menu", "health", "power", "name", "castbar", "raidIcon" }, --, "castbar"},
-		player = { "classSpecific", "debuffs"  }, --"combopoints" },
+		player = { "classSpecific", "debuffs", "experience" }, --"combopoints" },
 		target = { "debuffs", "buffs" },
 		focus  = { "debuffs", "buffs" },
 		pet    = { "buffs" },

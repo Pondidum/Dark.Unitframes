@@ -1,0 +1,8 @@
+## Interface: 40200
+## Author: p3lim
+## Version: 40200.10-Release
+## Title: oUF Experience
+## Notes: Experience Bar support for oUF layouts.
+## RequiredDeps: oUF
+
+oUF_Experience.lua
