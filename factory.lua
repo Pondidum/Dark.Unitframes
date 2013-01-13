@@ -93,30 +93,26 @@ local createRaid = function(self, unit)
 
 	end
 
-	local header = CreateFrame("Frame", "oUF_" .. ns.name .. "Raid", UIParent)
-	header.raidGroups = raidGroups
-
-	return header
+	return raidGroups
 
 end
 
 local layoutRaid = function(self, unit)
 	
+	local groups = self
+
 	local headerAnchor, headerOther, headerOtherAnchor, headerXoffset, headerYoffset = unpack(config.layout["raidheader"].point)
 
 	if type(headerOther) == "string" then
 		headerOther = frames[headerOther]
 	end
 
-	self:SetPoint(headerAnchor, headerOther, headerOtherAnchor, headerXoffset, headerYoffset)
-
-	local groups = self.raidGroups
 	local unitAnchor, unitOther, unitOtherAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
 
 	for i, group in ipairs(groups) do
 
 		if i == 1 then
-			group:SetPoint(unitAnchor, self, unitAnchor, 0, 0)
+			group:SetPoint(headerAnchor, headerOther, headerOtherAnchor, headerXoffset, headerYoffset)
 		else
 			group:SetPoint(unitAnchor, groups[i-1], unitOtherAnchor, unitXoffset, unitYoffset)
 		end
