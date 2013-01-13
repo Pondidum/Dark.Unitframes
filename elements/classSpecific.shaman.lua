@@ -42,7 +42,7 @@ local shamanSpecific = function(self, unit)
 	end)
 	
 	self.DarkTotems = totems
-
+	self.classSpecific = totems
 end
 
 ns.elements.specific.shaman = shamanSpecific

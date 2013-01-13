@@ -28,6 +28,7 @@ local warlockSpecific = function(self, unit)
 	end
 	
 	self.WarlockSpecBars = frame
+	self.classSpecific = frame
 
 end
 

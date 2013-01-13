@@ -44,7 +44,8 @@ local deathknightSpecific = function(self, unit)
 	end
 
 	self.DarkRunes = runes
-
+	self.classSpecific = runes
+	
 end
 
 ns.elements.specific.deathknight = deathknightSpecific

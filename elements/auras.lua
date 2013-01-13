@@ -53,7 +53,7 @@ end
 
 local createDebuffs = function(self)
 
-	local anchor = self.Health
+	local anchor = self.classSpecific or  self.Health
 	local debuffs = CreateFrame("Frame", nil, self)
 
 	debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", -1, 5)
@@ -73,7 +73,7 @@ end
 
 local createBuffs = function(self)
 
-	local anchor = self.Debuffs or self.Health
+	local anchor = self.Debuffs or self.classSpecific or self.Health
 	local buffs = CreateFrame("Frame", nil, self)
 	
 	buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", -1, 5)
