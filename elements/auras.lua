@@ -4,7 +4,8 @@ local core = Dark.core
 
 local UnitAura, UnitIsFriend = UnitAura, UnitIsFriend
 
-local auraHeight = 29
+local auraCount = 8
+local auraHeight = 27
 
 local postCreateAura = function(element, button)
 
@@ -56,12 +57,12 @@ local createDebuffs = function(self)
 	local anchor = self.classSpecific or self.Health
 	local debuffs = CreateFrame("Frame", nil, self)
 
-	debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", -1, 5)
-	debuffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", -1, 5)
+	debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+	debuffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
 	debuffs:SetHeight(auraHeight)
 	debuffs.size = auraHeight
-	debuffs.num = 7
-	debuffs.spacing = 1
+	debuffs.num = auraCount
+	debuffs.spacing = ns.config.spacing
 	debuffs.initialAnchor = 'BOTTOMLEFT'
 
 	debuffs.PostCreateIcon = postCreateAura
@@ -76,12 +77,12 @@ local createBuffs = function(self)
 	local anchor = self.Debuffs or self.classSpecific or self.Health
 	local buffs = CreateFrame("Frame", nil, self)
 	
-	buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", -1, 5)
-	buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", -1, 5)
+	buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+	buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
 	buffs:SetHeight(auraHeight)
 	buffs.size = auraHeight
-	buffs.num = 7
-	buffs.spacing = 1
+	buffs.num = auraCount
+	buffs.spacing = ns.config.spacing
 	buffs.initialAnchor = 'BOTTOMLEFT'
 
 	buffs.PostCreateIcon = postCreateAura
