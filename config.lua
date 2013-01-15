@@ -11,7 +11,7 @@ local config = {
 		player 			= { point = { "RIGHT", UIParent, "CENTER", -150, -50 }, 		size = largeFrame 	},
 		target 			= { point = { "LEFT", UIParent, "CENTER", 150, -50 }, 			size = largeFrame 	},
 		focus 			= { point = { "LEFT", UIParent, "CENTER", 150, 150 }, 			size = largeFrame 	},
-		pet 			= { point = { "RIGHT", "player", "LEFT", -25, 0 }, 				size = smallFrame 	},
+		pet 			= { point = { "RIGHT", "player", "LEFT", -45, 0 }, 				size = smallFrame 	},
 		targettarget 	= { point = { "LEFT", "target", "RIGHT", 45, 0 }, 				size = smallFrame 	},
 		focustarget 	= { point = { "LEFT", "focus", "RIGHT", 45, 0 }, 				size = smallFrame 	},
 		bossunit		= { point = { "TOPLEFT", "", "BOTTOMLEFT", 0, spacing }, 		size = smallFrame 	},
