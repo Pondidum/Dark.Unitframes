@@ -6,11 +6,14 @@ local TOTEM_HEIGHT = 8
 
 local shamanSpecific = function(self, unit)
 
-	local totems = {}
+	local totems = CreateFrame("Frame", nil, self)
+	totems:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
+	totems:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
+	totems:SetHeight(TOTEM_HEIGHT)
 
 	for i = 1, MAX_TOTEMS do
 
-		local totem = CreateFrame("StatusBar", "DarkTotem" .. i, self)
+		local totem = CreateFrame("StatusBar", "DarkTotem" .. i, totems)
 		totem:SetHeight(TOTEM_HEIGHT)
 		totem:SetStatusBarTexture(core.textures.normal)
 		totem:GetStatusBarTexture():SetHorizTile(false)
@@ -25,11 +28,11 @@ local shamanSpecific = function(self, unit)
 	end
 
 	--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
-	self:SetScript("OnSizeChanged", function(self, w, h) 
+	totems:SetScript("OnSizeChanged", function(self, w, h) 
 
 		local totemWidth = (w - (ns.config.spacing * 3)) / 4
 
-		totems[1]:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
+		totems[1]:SetPoint("BOTTOMLEFT", totems, "BOTTOMLEFT", 0, 0)
 		totems[1]:SetWidth(totemWidth)
 
 		for i = 2, MAX_TOTEMS do 
@@ -42,7 +45,7 @@ local shamanSpecific = function(self, unit)
 	end)
 	
 	self.DarkTotems = totems
-	self.classSpecific = totems[1]
+	self.classSpecific = totems
 end
 
 ns.elements.specific.shaman = shamanSpecific
