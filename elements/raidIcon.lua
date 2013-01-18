@@ -27,6 +27,15 @@ local raidIcon = function(self)
 
 	self.MasterLooter = masterLooter
 
+
+	local combat = self.Health:CreateTexture(nil, "OVERLAY")
+	combat:SetHeight(19)
+	combat:SetWidth(19)
+	combat:SetPoint("LEFT", self.Name, "Right", 0, 1)
+	combat:SetVertexColor(0.69, 0.31, 0.31)
+	
+	self.Combat = combat
+
 end
 
 ns.elements.raidIcon = raidIcon
