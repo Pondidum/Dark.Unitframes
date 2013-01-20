@@ -10,7 +10,7 @@ local createComboPoints = function(self, unit)
 	if unit ~= "target" then
 		return
 	end
-	
+
 	local points = CreateFrame("Frame", nil, self)
 	points:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
 	points:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
@@ -20,14 +20,12 @@ local createComboPoints = function(self, unit)
 
 	for i = 1, NUM_COMBO_POINTS do
 
-		local point = CreateFrame("StatusBar", nil, points)
+		local point = CreateFrame("Frame", nil, self)
 		point:SetHeight(POINT_HEIGHT)
 
-		point:SetStatusBarTexture(core.textures.normal)
-		point:GetStatusBarTexture():SetHorizTile(false)
-
-		style.addShadow(point)
 		style.addBackground(point)
+		style.addShadow(point)
+		point.bg:SetBackdropColor(0.65, 0.63, 0.35, 0.6)
 
 		points[i] = point
 
