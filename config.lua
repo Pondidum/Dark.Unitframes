@@ -27,7 +27,7 @@ local config = {
 		focus  = { "buffs" },
 		pet    = { "buffs", remove = { "debuffs" } },
 		raid   = { "range", remove = { "debuffs", "power", "castbar" } },
-		boss   = { "range", remove = { "debuffs", "buffs" } },
+		boss   = { remove = { "debuffs", "buffs" } },
 	}, 
 	colors = {
 		power = {
