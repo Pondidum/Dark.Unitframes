@@ -2,6 +2,10 @@ local addon, ns = ...
 
 local classSpecific = function(self, unit)
 
+	if unit ~= "player" then
+		return
+	end
+	
 	local class, classFile = UnitClass(unit)
 
 	local spec = ns.elements.specific[string.lower(classFile)]
