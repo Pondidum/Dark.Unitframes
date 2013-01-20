@@ -28,6 +28,7 @@ elements\combopoints.lua
 
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua
+elements\classSpecific.druid.lua
 elements\classSpecific.shaman.lua
 elements\classSpecific.warlock.lua
 
