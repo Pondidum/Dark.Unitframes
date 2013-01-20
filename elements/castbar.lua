@@ -24,8 +24,8 @@ end
 local createCastbar = function(self)
 
 	local castbar = CreateFrame("StatusBar", nil, self)
-	castbar:SetPoint("TOPLEFT", self.Power, "BOTTOMLEFT", 0, -ns.config.spacing * 2)
-	castbar:SetPoint("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -ns.config.spacing * 2)
+	castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 70)
+	castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 70)
 	castbar:SetHeight(16)
 
 	castbar:SetStatusBarTexture(core.textures.normal)
