@@ -21,8 +21,8 @@ local config = {
 		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -spacing, 0 },	 				},
 	},
 	elements = {
-		common = { "menu", "health", "power", "name", "castbar", "raidIcon", "classSpecific", "debuffs", }, --, "castbar"},
-		player = { "experience" }, --"combopoints" },
+		common = { "menu", "health", "power", "name", "castbar", "raidIcon", "classSpecific", "combopoints", "debuffs", },  
+		player = { "experience" },
 		target = { "buffs" },
 		focus  = { "buffs" },
 		pet    = { "buffs", remove = { "debuffs" } },

@@ -54,7 +54,7 @@ end
 
 local createDebuffs = function(self)
 
-	local anchor = self.classSpecific or self.Health
+	local anchor = self.classSpecific or self.CPoints or self.Health
 	local debuffs = CreateFrame("Frame", nil, self)
 
 	debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)

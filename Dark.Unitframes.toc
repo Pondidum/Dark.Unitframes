@@ -24,6 +24,7 @@ elements\castbar.lua
 elements\auras.lua
 elements\range.lua
 elements\experience.lua
+elements\combopoints.lua
 
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua
