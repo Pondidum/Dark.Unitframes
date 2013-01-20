@@ -30,7 +30,7 @@ local shamanSpecific = function(self, unit)
 	--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
 	totems:SetScript("OnSizeChanged", function(self, w, h) 
 
-		local totemWidth = (w - (ns.config.spacing * 3)) / MAX_TOTEMS
+		local totemWidth = (w - (ns.config.spacing * (MAX_TOTEMS - 1) )) / MAX_TOTEMS
 
 		totems[1]:SetPoint("BOTTOMLEFT", totems, "BOTTOMLEFT", 0, 0)
 		totems[1]:SetWidth(totemWidth)
