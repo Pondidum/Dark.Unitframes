@@ -1,7 +1,8 @@
 local addon, ns = ...
+local core = Dark.core
+local style = core.style
 
 local BAR_HEIGHT = 8
-local MAX_BARS = 3
 
 local generic = function(self, unit)
 
@@ -10,12 +11,10 @@ local generic = function(self, unit)
 	bars:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
 	bars:SetHeight(BAR_HEIGHT)
 
-	for i = 1, 3 do
+	for i = 1, 5 do
 
-		local bar = CreateFrame("StatusBar", nil, frame)
+		local bar = CreateFrame("Frame", nil, bars)
 		bar:SetHeight(8)
-		bar:SetStatusBarTexture(core.textures.normal)
-		bar:GetStatusBarTexture():SetHorizTile(false)
 		
 		style.addShadow(bar)
 		style.addBackground(bar)
@@ -25,21 +24,48 @@ local generic = function(self, unit)
 	end
 
 	--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
-	bars:SetScript("OnSizeChanged", function(self, w, h) 
+	bars.PostUpdate = function(elements, current, max, changed) 
 
-		local totemWidth = (w - (ns.config.spacing * (MAX_BARS - 1) )) / MAX_BARS
+		local w = elements:GetWidth()
+		local totemWidth = (w - (ns.config.spacing * (max - 1) )) / max
 
 		bars[1]:SetPoint("BOTTOMLEFT", bars, "BOTTOMLEFT", 0, 0)
 		bars[1]:SetWidth(totemWidth)
 
-		for i = 2, MAX_BARS do 
+		for i = 2, max do 
 
 			bars[i]:SetPoint("LEFT", bars[i - 1], "RIGHT", ns.config.spacing, 0)
 			bars[i]:SetWidth(totemWidth)
 
 		end
 
-	end)
+	end
+
+	bars.UpdateTexture = function(element, forceCP)
+
+		local red, green, blue
+		local colors = self.colors
+
+		if forceCP then
+			
+			red, green, blue = 1, 0.96, 0.41
+
+		elseif colors ~= nil then
+
+			local class, classFile = UnitClass(unit)
+			red, green, blue = unpack(colors.class[classFile])
+
+		else
+
+			red, green, blue = 1, 0.96, 0.41
+
+		end
+
+		for i = 1, 5  do
+			element[i].bg:SetBackdropColor(red, green, blue)
+		end
+
+	end
 
 	self.ClassIcons = bars
 	self.classSpecific = bars
