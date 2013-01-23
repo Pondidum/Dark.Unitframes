@@ -1,19 +1,25 @@
 local addon, ns = ...
 local core = Dark.core
 
-local name = function(self)
-
-	local name =  core.ui.createFont(self.Health, core.fonts.unitframes, 12, "OUTLINE")
+ns.elements.name = {
 	
-	name:SetPoint("LEFT", self.Health, "LEFT", 4, 0)
-	name:SetPoint("TOP", self.Health, "TOP", 4, 0)
-	name:SetPoint("BOTTOM", self.Health, "BOTTOM", 4, 0)	
-	name:SetTextColor(1, 1, 1)
-	name:SetJustifyH("LEFT")
+	create = function(self)
 
-	self.Name = name
-	self:Tag(name, '[name]')
+		local name =  core.ui.createFont(self.Health, core.fonts.unitframes, 12, "OUTLINE")
+		name:SetTextColor(1, 1, 1)
+		name:SetJustifyH("LEFT")	
 
-end
+		self.Name = name
+		self:Tag(name, '[name]')
 
-ns.elements.name = name
+	end,
+
+	layout = function(self)
+
+		self.Name:SetPoint("LEFT", self.Health, "LEFT", 4, 0)
+		self.Name:SetPoint("TOP", self.Health, "TOP", 4, 0)
+		self.Name:SetPoint("BOTTOM", self.Health, "BOTTOM", 4, 0)
+
+	end,
+
+}
