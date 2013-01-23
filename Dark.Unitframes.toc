@@ -19,7 +19,7 @@ elements\health.lua
 elements\menu.lua
 elements\name.lua
 elements\power.lua
-elements\raidIcon.lua
+elements\icons.lua
 elements\castbar.lua
 elements\auras.lua
 elements\range.lua
