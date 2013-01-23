@@ -1,9 +1,15 @@
 local addon, ns = ...
 
-local rangeCheck = function(self, unit)
+ns.elements.range = {
+	
+	create = function(self)
 
-	self.Range = {insideAlpha = 1, outsideAlpha = 0.3}
+		self.Range = {insideAlpha = 1, outsideAlpha = 0.3}
+		
+	end,
 
-end
+	layout = function(self)
 
-ns.elements.range = rangeCheck
+	end,
+
+}

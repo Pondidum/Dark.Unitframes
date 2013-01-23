@@ -1,41 +1,39 @@
 local addon, ns = ...
 local core = Dark.core
 
-local raidIcon = function(self)
+ns.elements.raidIcon = {
 
-	local raidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-	raidIcon:SetTexture(core.textures.raidmarks) -- thx hankthetank for texture
-	raidIcon:SetHeight(20)
-	raidIcon:SetWidth(20)
-	raidIcon:SetPoint("TOP", 0, 11)
+	create = function(self)
 
-	self.RaidIcon = raidIcon
+		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")	
+		self.Leader = self.Health:CreateTexture(nil, "OVERLAY")	
+		self.MasterLooter = self.Health:CreateTexture(nil, "OVERLAY")
+		self.Combat = self.Health:CreateTexture(nil, "OVERLAY")
 
+		self.RaidIcon:SetTexture(core.textures.raidmarks) -- thx hankthetank for texture
+		self.Combat:SetVertexColor(0.69, 0.31, 0.31)
 	
-	local leader = self.Health:CreateTexture(nil, "OVERLAY")
-	leader:SetHeight(14)
-	leader:SetWidth(14)
-	leader:SetPoint("CENTER", self.Health, "CENTER", -15, 1)
+	end,
 
-	self.Leader = leader
+	layout = function(self)
 
+		self.RaidIcon:SetHeight(20)
+		self.RaidIcon:SetWidth(20)
+		self.RaidIcon:SetPoint("TOP", 0, 11)
 
-	local masterLooter = self.Health:CreateTexture(nil, "OVERLAY")
-	masterLooter:SetHeight(14)
-	masterLooter:SetWidth(14)
-	masterLooter:SetPoint("CENTER", self.Health, "CENTER", 15, 1)
+		self.Leader:SetHeight(14)
+		self.Leader:SetWidth(14)
+		self.Leader:SetPoint("CENTER", self.Health, "CENTER", -15, 1)
 
-	self.MasterLooter = masterLooter
+		self.MasterLooter:SetHeight(14)
+		self.MasterLooter:SetWidth(14)
+		self.MasterLooter:SetPoint("CENTER", self.Health, "CENTER", 15, 1)
 
+		self.Combat:SetHeight(19)
+		self.Combat:SetWidth(19)
+		self.Combat:SetPoint("LEFT", self.Name, "Right", 0, 1)
 
-	local combat = self.Health:CreateTexture(nil, "OVERLAY")
-	combat:SetHeight(19)
-	combat:SetWidth(19)
-	combat:SetPoint("LEFT", self.Name, "Right", 0, 1)
-	combat:SetVertexColor(0.69, 0.31, 0.31)
-	
-	self.Combat = combat
+	end,
 
-end
+}	
 
-ns.elements.raidIcon = raidIcon
