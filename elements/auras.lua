@@ -52,46 +52,62 @@ local postUpdateAura = function(self, unit, icon, index, offset)
 
 end
 
-local createDebuffs = function(self)
+ns.elements.buffs = {
 
-	local anchor = self.classSpecific or self.CPoints or self.Health
-	local debuffs = CreateFrame("Frame", nil, self)
+	create = function(self)
 
-	debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
-	debuffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-	debuffs:SetHeight(auraHeight)
-	debuffs.size = auraHeight
-	debuffs.num = auraCount
-	debuffs.spacing = ns.config.spacing
-	debuffs.initialAnchor = 'BOTTOMLEFT'
+		local buffs = CreateFrame("Frame", nil, self)
+		buffs.size = auraHeight
+		buffs.num = auraCount
+		buffs.spacing = ns.config.spacing
+		buffs.initialAnchor = 'BOTTOMLEFT'
 
-	debuffs.PostCreateIcon = postCreateAura
-	debuffs.PostUpdateIcon = postUpdateAura
+		buffs.PostCreateIcon = postCreateAura
+		buffs.PostUpdateIcon = postUpdateAura
+		
+		self.Buffs = buffs
 
-	self.Debuffs = debuffs
+	end,
 
-end
+	layout = function(self)
 
-local createBuffs = function(self)
-
-	local anchor = self.Debuffs or self.classSpecific or self.Health
-	local buffs = CreateFrame("Frame", nil, self)
+		local anchor = self.Debuffs or self.classSpecific or self.Health
 	
-	buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
-	buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-	buffs:SetHeight(auraHeight)
-	buffs.size = auraHeight
-	buffs.num = auraCount
-	buffs.spacing = ns.config.spacing
-	buffs.initialAnchor = 'BOTTOMLEFT'
+		self.Buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+		self.Buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+		self.Buffs:SetHeight(auraHeight)
+		
+	end,
 
-	buffs.PostCreateIcon = postCreateAura
-	buffs.PostUpdateIcon = postUpdateAura
+}
+
+ns.elements.debuffs = {
+
+	create = function(self)
+
+		local debuffs = CreateFrame("Frame", nil, self)
+
+		debuffs.size = auraHeight
+		debuffs.num = auraCount
+		debuffs.spacing = ns.config.spacing
+		debuffs.initialAnchor = 'BOTTOMLEFT'
+
+		debuffs.PostCreateIcon = postCreateAura
+		debuffs.PostUpdateIcon = postUpdateAura
+
+		self.Debuffs = debuffs
+
+	end,
+
+	layout = function(self)
+
+		local anchor = self.classSpecific or self.CPoints or self.Health
+
+		self.Debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+		self.Debuffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+		self.Debuffs:SetHeight(auraHeight)
 	
-	self.Buffs = buffs
-
-end
-
-ns.elements.buffs = createBuffs
-ns.elements.debuffs = createDebuffs
+	end,
+	
+}
 

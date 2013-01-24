@@ -4,48 +4,55 @@ local style = core.style
 
 local RUNE_HEIGHT = 8
 
-local deathknightSpecific = function(self, unit)
+ns.elements.specific.deathknight = {
+	
+	create = function(self, unit)
 
-	local anchor = self.Health
-	local runes = CreateFrame("Frame", nil, self)
+		local runes = CreateFrame("Frame", nil, self)
+		runes:SetHeight( (3 * RUNE_HEIGHT) + (2 * ns.config.spacing) )
 
-	runes:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
-	runes:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-	runes:SetHeight( (3 * RUNE_HEIGHT) + (2 * ns.config.spacing) )
+		for i = 1, 6 do
 
-	for i = 1, 6 do
+			local rune = CreateFrame("StatusBar", nil, runes)
 
-		local rune = CreateFrame("StatusBar", nil, runes)
+			rune:SetStatusBarTexture(core.textures.normal)
+			rune:GetStatusBarTexture():SetHorizTile(false)
 
-		rune:SetStatusBarTexture(core.textures.normal)
-		rune:GetStatusBarTexture():SetHorizTile(false)
+			style.addBackground(rune)
+			style.addShadow(rune)
 
-		style.addBackground(rune)
-		style.addShadow(rune)
+			rune:SetHeight(RUNE_HEIGHT)
 
-		rune:SetHeight(RUNE_HEIGHT)
+			if i % 2 == 0 then
+				rune:SetPoint("RIGHT")
+				rune:SetPoint("LEFT", runes, "CENTER", ns.config.spacing, 0)
+			else
+				rune:SetPoint("LEFT")
+				rune:SetPoint("RIGHT", runes, "CENTER", -ns.config.spacing, 0)
+			end
 
-		if i % 2 == 0 then
-			rune:SetPoint("RIGHT")
-			rune:SetPoint("LEFT", runes, "CENTER", ns.config.spacing, 0)
-		else
-			rune:SetPoint("LEFT")
-			rune:SetPoint("RIGHT", runes, "CENTER", -ns.config.spacing, 0)
+			local j = i - 1
+			local yOffset = (j - (j % 2)) / 2
+			local delta = (yOffset * RUNE_HEIGHT) + (yOffset * ns.config.spacing)
+
+			rune:SetPoint("BOTTOM", runes, "BOTTOM", 0, delta)
+
+			runes[i] = rune
+
 		end
 
-		local j = i - 1
-		local yOffset = (j - (j % 2)) / 2
-		local delta = (yOffset * RUNE_HEIGHT) + (yOffset * ns.config.spacing)
+		self.DarkRunes = runes
+		self.classSpecific = runes
+		
+	end,
 
-		rune:SetPoint("BOTTOM", runes, "BOTTOM", 0, delta)
+	layout = function(self)
 
-		runes[i] = rune
+		local anchor = self.Health
 
-	end
+		self.DarkRunes:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+		self.DarkRunes:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+		
+	end,
 
-	self.DarkRunes = runes
-	self.classSpecific = runes
-	
-end
-
-ns.elements.specific.deathknight = deathknightSpecific
+}

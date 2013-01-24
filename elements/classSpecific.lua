@@ -1,21 +1,35 @@
 local addon, ns = ...
 
-local classSpecific = function(self, unit)
+local getSpecific = function(unit)
 
 	if unit ~= "player" then
-		return
-	end
-	
-	local class, classFile = UnitClass(unit)
+		return { 
+			create = function() end, 
+			layout = function() end,
+		}
 
+	end
+
+	local class, classFile = UnitClass(unit)
 	local spec = ns.elements.specific[string.lower(classFile)]
 
-	if spec then
-		spec(self, unit)
-	end
+	return spec
 
 end
 
-
 ns.elements.specific = {}
-ns.elements.classSpecific = classSpecific
+ns.elements.classSpecific = {
+	
+	create = function(self, unit, ...)
+
+		getSpecific(unit).create(self, unit, ...)
+
+	end,
+
+	layout = function(self, unit, ...)
+
+		getSpecific(unit).layout(self, unit, ...)
+
+	end,
+
+}

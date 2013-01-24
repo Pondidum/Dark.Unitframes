@@ -8,9 +8,6 @@ local MAX_MUSHROOMS = 3
 local createEclipseBar = function(self, unit)
 
 	local eclipse = CreateFrame("Frame", nil, self)
-	eclipse:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
-	eclipse:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
-	eclipse:SetHeight(ECLIPSE_HEIGHT)
 
 	style.addBackground(eclipse)
 	style.addShadow(eclipse)
@@ -44,38 +41,32 @@ local createMushrooms = function(self, unit)
 		[3] = {0.65, 0.63, 0.35, 0.6},
 	}
 
-	mushrooms:SetPoint("BOTTOMLEFT", self.EclipseBar, "TOPLEFT", 0, ns.config.spacing)
-	mushrooms:SetPoint("BOTTOMRIGHT", self.EclipseBar, "TOPRIGHT", 0, ns.config.spacing)
-	mushrooms:SetHeight(ECLIPSE_HEIGHT)
-
 	for i = 1, MAX_MUSHROOMS do
 
-		local totem = CreateFrame("StatusBar", nil, mushrooms)
-		totem:SetHeight(ECLIPSE_HEIGHT)
-		totem:SetStatusBarTexture(core.textures.normal)
-		totem:GetStatusBarTexture():SetHorizTile(false)
+		local mushroom = CreateFrame("StatusBar", nil, mushrooms)
+		mushroom:SetHeight(ECLIPSE_HEIGHT)
+		mushroom:SetStatusBarTexture(core.textures.normal)
+		mushroom:GetStatusBarTexture():SetHorizTile(false)
 
-		style.addShadow(totem)
-		style.addBackground(totem)
+		style.addShadow(mushroom)
+		style.addBackground(mushroom)
 
-		totem.bg = totem:CreateTexture(nil, 'BORDER')
-
-		mushrooms[i] = totem
+		mushrooms[i] = mushroom
 
 	end
 
 	--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
 	mushrooms:SetScript("OnSizeChanged", function(self, w, h) 
 
-		local totemWidth = (w - (ns.config.spacing *  (MAX_MUSHROOMS - 1))) / MAX_MUSHROOMS
+		local mushroomWidth = (w - (ns.config.spacing *  (MAX_MUSHROOMS - 1))) / MAX_MUSHROOMS
 
 		mushrooms[1]:SetPoint("BOTTOMLEFT", mushrooms, "BOTTOMLEFT", 0, 0)
-		mushrooms[1]:SetWidth(totemWidth)
+		mushrooms[1]:SetWidth(mushroomWidth)
 
 		for i = 2, MAX_MUSHROOMS do 
 
 			mushrooms[i]:SetPoint("LEFT", mushrooms[i - 1], "RIGHT", ns.config.spacing, 0)
-			mushrooms[i]:SetWidth(totemWidth)
+			mushrooms[i]:SetWidth(mushroomWidth)
 
 		end
 
@@ -85,13 +76,27 @@ local createMushrooms = function(self, unit)
 
 end
 
-local druidSpecific = function(self, unit)
+ns.elements.specific.druid = {
 	
-	self.EclipseBar = createEclipseBar(self, unit)
-	self.DarkTotems = createMushrooms(self, unit)
+	create = function(self)
 
-	self.classSpecific = self.DarkTotems
+		self.EclipseBar = createEclipseBar(self, unit)
+		self.DarkTotems = createMushrooms(self, unit)
 
-end
+		self.classSpecific = self.DarkTotems
 
-ns.elements.specific.druid = druidSpecific
+	end,
+
+	layout = function(self)
+
+		self.EclipseBar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
+		self.EclipseBar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
+		self.EclipseBar:SetHeight(ECLIPSE_HEIGHT)
+
+		self.DarkTotems:SetPoint("BOTTOMLEFT", self.EclipseBar, "TOPLEFT", 0, ns.config.spacing)
+		self.DarkTotems:SetPoint("BOTTOMRIGHT", self.EclipseBar, "TOPRIGHT", 0, ns.config.spacing)
+		self.DarkTotems:SetHeight(ECLIPSE_HEIGHT)
+
+	end,
+
+}
