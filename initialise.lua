@@ -13,7 +13,7 @@ local boot = function()
 	setmetatable(ns.config.colors.power, { __index = oUF.colors.power })
 	setmetatable(ns.config.colors.class, { __index = oUF.colors.class })
 
-	setmetatable(ns.config.elements, { __index = function() return {} end })
+	--setmetatable(ns.config.elements, { __index = function() return {} end })
 
 end
 

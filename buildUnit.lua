@@ -26,17 +26,29 @@ local buildUnit = function(self, unit, ...)
 
 	self.colors = config.colors
 
-	local unitConfig = config.elements[unit]
-	local ignoreElements = unitConfig.remove or {}
+	print("building unit " .. unit)
 
-	local commonConfig = config.elements.common
+	local unitConfig = config.units[unit]
 
-	for i, element in ipairs(commonConfig) do
-		runElement(self, ignoreElements, element, unit, ...)
+	for name, element in pairs(ns.elements) do
+
+		if not tContains(unitConfig.hide, name) then
+			element.create(self, unit, ...)
+		end
+
 	end
 
-	for i, element in ipairs(unitConfig) do
-		runElement(self, ignoreElements, element, unit, ...)
+	self:SetSize(unpack(unitConfig.size))
+
+	for name, element in pairs(ns.elements) do
+
+		if not tContains(unitConfig.hide, name) then
+
+			local layout = unitConfig.customise[name] or element.layout
+			layout(self, unit, ...)
+
+		end
+
 	end
 
 end

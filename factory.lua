@@ -127,11 +127,11 @@ end
 
 local layoutDefault = function(self, unit)
 	
-	local conf = config.layout[unit]
+	local conf = config.units[unit]
 
-	if conf.point then
+	if conf.location then
 
-		local point, target, targetPoint, xoffset, yoffset = unpack(conf.point)
+		local point, target, targetPoint, xoffset, yoffset = unpack(conf.location)
 
 		if type(target) == "string" then
 			target = frames[target]
@@ -139,10 +139,6 @@ local layoutDefault = function(self, unit)
 
 		self:SetPoint(point, target, targetPoint, xoffset, yoffset)
 
-	end
-
-	if conf.size then
-		self:SetSize(unpack(conf.size))
 	end
 
 end
@@ -162,7 +158,7 @@ local factory = function(self)
 	
 	local config = ns.config
 
-	for i, unit in ipairs(config.units) do
+	for unit, unitConfig in pairs(config.units) do
 		frames[unit] = spawnMapping[unit].create(self, unit)
 	end
 

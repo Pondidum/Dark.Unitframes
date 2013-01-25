@@ -20,7 +20,12 @@ ns.elements.power = {
 		style.addShadow(power)
 		style.addBackground(power)
 
+		local bg = power:CreateTexture(nil, 'BORDER')
+		bg:SetAllPoints(power)
+		bg:SetTexture(core.textures.normal)
 		bg.multiplier = 0.3
+
+		power.bg = bg
 		
 		self.Power = power
 

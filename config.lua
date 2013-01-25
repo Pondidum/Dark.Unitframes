@@ -1,4 +1,4 @@
-local addon, ns = ...
+	local addon, ns = ...
 
 local spacing = 3
 local largeFrame = {237, 28}
@@ -6,7 +6,61 @@ local smallFrame = {132, 28}
 
 local config = {
 	spacing = spacing,
-	units = {"player", "pet", "target", "focus", "targettarget", "focustarget", "boss", "raid"},
+	
+	units = {
+
+		player = {
+			size = largeFrame,
+			location = { "CENTER", UIParent, "CENTER", 0, -200 },
+			hide = { "buffs", "range" },
+			customise = {
+				castbar = function(self, unit)
+					self.Castbar:SetPoint("CENTER", self.Health, "TOP", 0, 150)
+					self.Castbar:SetSize(150, 26)
+				end,
+			},		
+		},
+
+		target = {
+			size = largeFrame,
+			location = { "LEFT", UIParent, "CENTER", 200, -75 },
+			hide = { "classSpecific", "experience", "range"},
+			customise = {},
+		},
+		
+		focus = {
+			size = largeFrame,
+			location = { "RIGHT", UIParent, "CENTER", -200, -75 },
+			hide = { "classSpecific", "experience", "range"},
+			customise = {},
+		},
+
+		pet = {
+			size = smallFrame,
+			location = { "RIGHT", "player", "LEFT", -45, 0 },
+			hide = { "classSpecific", "experience", "range"},
+			customise = {},
+		},
+
+		targettarget = {
+			size = smallFrame,
+			location = { "LEFT", "target", "RIGHT", 45, 0 },
+			hide = { "classSpecific", "experience", "range"},
+			customise = {},
+		},
+		
+		focustarget = {
+			size = smallFrame,
+			location = { "RIGHT", "focus", "LEFT", -45, 0 },
+			hide = { "classSpecific", "experience", "range"},
+			customise = {},
+		},
+
+
+
+	},
+
+	--[[units = {"player", "pet", "target", "focus", "targettarget", "focustarget", "boss", "raid"},
 	layout = {
 		player 			= { point = { "CENTER", UIParent, "CENTER", 0, -200 }, 			size = largeFrame 	},
 		target 			= { point = { "LEFT", UIParent, "CENTER", 200, -75 }, 			size = largeFrame 	},
@@ -20,15 +74,15 @@ local config = {
 		raidgroup 		= { point = { "TOP", "", "BOTTOM", 0, -spacing},									},
 		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -spacing, 0 },	 				},
 	},
-	elements = {
-		common = { "menu", "health", "power", "name", "castbar", "icons", "classSpecific", "combopoints", "debuffs", },  
-		player = { "experience" },
-		target = { "buffs" },
-		focus  = { "buffs" },
-		pet    = { "buffs", remove = { "debuffs" } },
-		raid   = { "range", remove = { "debuffs", "power", "castbar" } },
-		boss   = { remove = { "debuffs", "buffs" } },
-	}, 
+		elements = {
+			common = { "menu", "health", "power", "name", "castbar", "icons", "classSpecific", "combopoints", "debuffs", },  
+			player = { "experience" },
+			target = { "buffs" },
+			focus  = { "buffs" },
+			pet    = { "buffs", remove = { "debuffs" } },
+			raid   = { "range", remove = { "debuffs", "power", "castbar" } },
+			boss   = { remove = { "debuffs", "buffs" } },
+	}, ]]--
 	colors = {
 		power = {
 			["MANA"] = {0.31, 0.45, 0.63},

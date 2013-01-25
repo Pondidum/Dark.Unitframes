@@ -17,8 +17,7 @@ local getSpecific = function(unit)
 
 end
 
-ns.elements.specific = {}
-ns.elements.classSpecific = {
+ns.elements.specific = {
 	
 	create = function(self, unit, ...)
 
