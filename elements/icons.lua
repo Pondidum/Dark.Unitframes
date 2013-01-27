@@ -5,7 +5,6 @@ ns.elements.raidIcon = {
 
 	create = function(self)
 
-		print("creating raid icons")
 		self.RaidIcon = self:CreateTexture(nil, "OVERLAY")	
 		self.Leader = self:CreateTexture(nil, "OVERLAY")	
 		self.MasterLooter = self:CreateTexture(nil, "OVERLAY")
