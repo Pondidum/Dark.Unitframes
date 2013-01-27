@@ -1,19 +1,20 @@
 local addon, ns = ...
 
+local blank =  { 
+	create = function() end, 
+	layout = function() end,
+}
+
 local getSpecific = function(unit)
 
 	if unit ~= "player" then
-		return { 
-			create = function() end, 
-			layout = function() end,
-		}
-
+		return blank
 	end
 
 	local class, classFile = UnitClass(unit)
 	local spec = ns.elements.specific[string.lower(classFile)]
 
-	return spec
+	return spec or blank
 
 end
 
