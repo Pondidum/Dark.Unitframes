@@ -7,7 +7,7 @@ local fake = function() end
 local frames = {}
 
 local spawnHelper = function(self, unit)
-
+	
 	if unit:match("%d") then
 		self:SetActiveStyle(ns.name .. unit:gsub("%d", ''):gsub("^%l", string.upper))
 	else
@@ -43,20 +43,20 @@ local createBoss = function(self, unit)
 end
 
 local layoutBoss = function(self, unit)
-
-	local point, target, targetPoint, xoffset, yoffset = unpack(config.layout["bossheader"].point)
+	
+	local bossConfig = config.units["boss"]
+	local point, target, targetPoint, xoffset, yoffset = unpack(bossConfig.headerLocation)
 
 	if type(target) == "string" then
 		target = frames[target]
 	end
 
-	local bossPoint, bossTarget, bossTargetPoint, bossXoffset, bossYoffset = unpack(config.layout["bossunit"].point)
-	local bossWidth, bossHeight = unpack(config.layout["bossunit"].size)
+	local bossPoint, bossTarget, bossTargetPoint, bossXoffset, bossYoffset = unpack(bossConfig.unitLocation)
+	local bossWidth, bossHeight = unpack(bossConfig.unitSize)
 
 	self[1]:SetPoint(point, target, targetPoint, xoffset, yoffset)
 	self[1]:SetSize(bossWidth, bossHeight)
 	
-
 	for i = 2, #self do
 		self[i]:SetPoint(bossPoint, self[i - 1], bossTargetPoint, bossXoffset, bossYoffset)
 		self[i]:SetSize(bossWidth, bossHeight)
@@ -67,9 +67,10 @@ end
 local createRaid = function(self, unit) 
 
 	self:SetActiveStyle(ns.name .. "Raid")
+	local raidConfig = config.units.raid
 
-	local unitWidth, unitHeight = unpack(config.layout["raidunit"].size)
-	local unitAnchor, unitXoffset, unitYoffset = unpack(config.layout["raidunit"].point)
+	local unitWidth, unitHeight = unpack(raidConfig.unitSize)
+	local unitAnchor, unitXoffset, unitYoffset = unpack(raidConfig.unitLocation)
 	
 	local raidGroups = {}
 
@@ -100,14 +101,15 @@ end
 local layoutRaid = function(self, unit)
 	
 	local groups = self
+	local raidConfig = config.units.raid
 
-	local headerAnchor, headerOther, headerOtherAnchor, headerXoffset, headerYoffset = unpack(config.layout["raidheader"].point)
+	local headerAnchor, headerOther, headerOtherAnchor, headerXoffset, headerYoffset = unpack(raidConfig.headerLocation)
 
 	if type(headerOther) == "string" then
 		headerOther = frames[headerOther]
 	end
 
-	local groupAnchor, unitOther, groupOtherAnchor, groupXoffset, groupYoffset = unpack(config.layout["raidgroup"].point)
+	local groupAnchor, unitOther, groupOtherAnchor, groupXoffset, groupYoffset = unpack(raidConfig.groupLocation)
 
 	for i, group in ipairs(groups) do
 

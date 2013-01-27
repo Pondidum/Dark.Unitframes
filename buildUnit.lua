@@ -18,34 +18,39 @@ local runElement = function(self, ignoreElements, element, unit, ...)
 
 end
 
-local buildUnit = function(self, unit, ...)
+local buildUnit = function(self, unit)
 
 	self:RegisterForClicks("AnyUp")
 	self:SetScript("OnEnter", UnitFrame_OnEnter)
 	self:SetScript("OnLeave", UnitFrame_OnLeave)
 
 	self.colors = config.colors
-
-	print("building unit " .. unit)
-
-	local unitConfig = config.units[unit]
+	local configUnit = unit:gsub("%d", '')
+	local unitConfig = config.units[configUnit]
 
 	for name, element in pairs(ns.elements) do
 
 		if not tContains(unitConfig.hide, name) then
-			element.create(self, unit, ...)
+			element.create(self, unit)
 		end
 
 	end
 
-	self:SetSize(unpack(unitConfig.size))
+	if unitConfig.size then
+		self:SetSize(unpack(unitConfig.size))
+	end
 
 	for name, element in pairs(ns.elements) do
 
 		if not tContains(unitConfig.hide, name) then
 
-			local layout = unitConfig.customise[name] or element.layout
-			layout(self, unit, ...)
+			local customLayout = unitConfig.customise[name] 
+
+			if customLayout then
+				customLayout(self, unit, element.layout)
+			else
+				element.layout(self, unit)
+			end 
 
 		end
 

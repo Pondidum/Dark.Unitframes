@@ -3,6 +3,7 @@
 local spacing = 3
 local largeFrame = {237, 28}
 local smallFrame = {132, 28}
+local raidFrame = {132, 18} 
 
 local config = {
 	spacing = spacing,
@@ -14,10 +15,11 @@ local config = {
 			location = { "CENTER", UIParent, "CENTER", 0, -200 },
 			hide = { "buffs", "range" },
 			customise = {
-				castbar = function(self, unit)
+				--[[castbar = function(self, unit, base)
+					--base(self, unit)	--if you want most of the default looks...
 					self.Castbar:SetPoint("CENTER", self.Health, "TOP", 0, 150)
 					self.Castbar:SetSize(150, 26)
-				end,
+				end,]]--
 			},		
 		},
 
@@ -56,7 +58,21 @@ local config = {
 			customise = {},
 		},
 
+		raid = {
+			unitSize = raidFrame,
+			unitLocation = { "TOP", 0, -spacing },
+			groupLocation = { "TOP" , "", "BOTTOM", 0, -spacing },
+			headerLocation = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -spacing, 0 },
 
+			hide = { "classSpecific", "power", "buffs", "debuffs", "castbar"},
+		},
+
+		boss = {
+			unitSize = smallFrame,
+			unitLocation = { "TOPLEFT", "", "BOTTOMLEFT", 0, -spacing*2 },
+			headerLocation = { "LEFT", UIParent, "LEFT", spacing, 0 },
+			hide = { "castbar", "buffs", "debuffs" }
+		},
 
 	},
 

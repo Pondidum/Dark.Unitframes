@@ -11,6 +11,7 @@ end
 
 local registerUnitStyles = function()
 
+	oUF:RegisterStyle(ns.name, ns.buildUnit)
 	for unit, unitConfig in pairs(ns.config.units) do
 		oUF:RegisterStyle(ns.name .. unit:gsub("^%l", string.upper), ns.buildUnit)
 	end
