@@ -13,6 +13,8 @@ libs\oUF_Experience\oUF_Experience.lua
 config.lua
 initialise.lua
 
+builder.lua
+
 tags\health.lua
 
 elements\health.lua
