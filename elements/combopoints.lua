@@ -7,7 +7,11 @@ local NUM_COMBO_POINTS = 5
 
 ns.elements.combopoints = {
 	
-	create = function(self)
+	create = function(self, unit)
+
+		if unit ~= "player" then
+			return
+		end
 
 		local points = CreateFrame("Frame", nil, self)
 
@@ -48,8 +52,12 @@ ns.elements.combopoints = {
 
 	end,
 
-	layout = function(self)
+	layout = function(self, unit)
 
+		if unit ~= "player" then
+			return
+		end
+		
 		self.CPoints:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
 		self.CPoints:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
 		self.CPoints:SetHeight(POINT_HEIGHT)
