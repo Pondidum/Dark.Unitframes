@@ -3,7 +3,11 @@ local core = Dark.core
 
 ns.elements.experience = {
 	
-	create = function(self)
+	create = function(self, unit)
+
+		if unit ~= "player" then
+			return
+		end
 
 		local experience = CreateFrame("StatusBar", nil, self)
 		experience:SetStatusBarTexture(core.textures.normal)
@@ -36,7 +40,11 @@ ns.elements.experience = {
 	
 	end,
 
-	layout = function(self)
+	layout = function(self, unit)
+
+		if unit ~= "player" then
+			return
+		end
 	
 		self.Experience:SetPoint("BOTTOMLEFT", DarkuiBar4, "TOPLEFT",0, 5)
 		self.Experience:SetPoint("BOTTOMRIGHT", DarkuiBar4, "TOPRIGHT",0, 5)
