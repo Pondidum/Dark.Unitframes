@@ -41,34 +41,15 @@ local createMushrooms = function(self, unit)
 		[3] = {0.65, 0.63, 0.35, 0.6},
 	}
 
-	for i = 1, MAX_MUSHROOMS do
+	ns.builder.autoSegments("StatusBar", mushrooms, MAX_MUSHROOMS, ns.config.spacing, function(segment)
 
-		local mushroom = CreateFrame("StatusBar", nil, mushrooms)
-		mushroom:SetHeight(ECLIPSE_HEIGHT)
-		mushroom:SetStatusBarTexture(core.textures.normal)
-		mushroom:GetStatusBarTexture():SetHorizTile(false)
+		style.addShadow(segment)
+		style.addBackground(segment)
 
-		style.addShadow(mushroom)
-		style.addBackground(mushroom)
+		segment:SetStatusBarTexture(core.textures.normal)
+		segment:GetStatusBarTexture():SetHorizTile(false)
 
-		mushrooms[i] = mushroom
-
-	end
-
-	--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
-	mushrooms:SetScript("OnSizeChanged", function(self, w, h) 
-
-		local mushroomWidth = (w - (ns.config.spacing *  (MAX_MUSHROOMS - 1))) / MAX_MUSHROOMS
-
-		mushrooms[1]:SetPoint("BOTTOMLEFT", mushrooms, "BOTTOMLEFT", 0, 0)
-		mushrooms[1]:SetWidth(mushroomWidth)
-
-		for i = 2, MAX_MUSHROOMS do 
-
-			mushrooms[i]:SetPoint("LEFT", mushrooms[i - 1], "RIGHT", ns.config.spacing, 0)
-			mushrooms[i]:SetWidth(mushroomWidth)
-
-		end
+		segment:SetHeight(ECLIPSE_HEIGHT)
 
 	end)
 

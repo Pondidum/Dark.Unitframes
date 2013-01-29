@@ -10,17 +10,15 @@ local composition = {
 
 		local bars = CreateFrame("Frame", nil, self)
 
-		for i = 1, 5 do
+		
+		ns.builder.segments("Frame", bars, 5, function(segment)
 
-			local bar = CreateFrame("Frame", nil, bars)
-			bar:SetHeight(8)
-			
-			style.addShadow(bar)
-			style.addBackground(bar)
+			style.addShadow(segment)
+			style.addBackground(segment)
 
-			bars[i] = bar
+			segment:SetHeight(8)
 
-		end
+		end)
 
 		--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
 		bars.PostUpdate = function(elements, current, max, changed) 
