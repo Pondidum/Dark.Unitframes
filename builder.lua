@@ -9,7 +9,7 @@ builder.segments = function(type, parent, count, config)
 		local segment = CreateFrame(type or "Frame", nil, parent)
 		
 		if config then
-			config(segment)
+			config(segment, i)
 		end
 
 		parent[i] = segment

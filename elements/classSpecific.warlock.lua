@@ -11,21 +11,22 @@ ns.elements.specific.warlock = {
 		style.addBackground(frame)
 		style.addShadow(frame)
 
-		for i = 1, 4 do
-
-			frame[i] = CreateFrame("StatusBar", nil, frame)
-			frame[i]:SetHeight(8)
-			frame[i]:SetStatusBarTexture(core.textures.normal)
+		ns.builder.segments("StatusBar", frame, 4, function(segment, i)
 			
+			segment:SetStatusBarTexture(core.textures.normal)
+			segment:GetStatusBarTexture():SetHorizTile(false)
+			segment:SetHeight(8)
+
 			if i == 1 then
-				frame[i]:SetWidth((250 / 4) - 2)
-				frame[i]:SetPoint("LEFT", frame, "LEFT", 0, 0)
+				segment:SetWidth((250 / 4) - 2)
+				segment:SetPoint("LEFT", frame, "LEFT", 0, 0)
 			else
-				frame[i]:SetWidth((250 / 4) - 1)
-				frame[i]:SetPoint("LEFT", frame[i-1], "RIGHT", ns.config.spacing, 0)
+				segment:SetWidth((250 / 4) - 1)
+				segment:SetPoint("LEFT", frame[i-1], "RIGHT", ns.config.spacing, 0)
 			end
-		end
-		
+
+		end)
+
 		self.WarlockSpecBars = frame
 		self.classSpecific = frame
 
