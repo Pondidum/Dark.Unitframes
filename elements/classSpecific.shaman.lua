@@ -10,34 +10,15 @@ ns.elements.specific.shaman = {
 		
 		local totems = CreateFrame("Frame", nil, self)
 		
-		for i = 1, MAX_TOTEMS do
+		ns.builder.autoSegments("StatusBar", totems, MAX_TOTEMS, ns.config.spacing, function(segment)
 
-			local totem = CreateFrame("StatusBar", nil, totems)
-			totem:SetHeight(TOTEM_HEIGHT)
-			totem:SetStatusBarTexture(core.textures.normal)
-			totem:GetStatusBarTexture():SetHorizTile(false)
+			segment:SetStatusBarTexture(core.textures.normal)
+			segment:GetStatusBarTexture():SetHorizTile(false)
 
-			style.addShadow(totem)
-			style.addBackground(totem)
+			style.addShadow(segment)
+			style.addBackground(segment)
 
-			totems[i] = totem
-
-		end
-
-		--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
-		totems:SetScript("OnSizeChanged", function(self, w, h) 
-
-			local totemWidth = (w - (ns.config.spacing * (MAX_TOTEMS - 1) )) / MAX_TOTEMS
-
-			totems[1]:SetPoint("BOTTOMLEFT", totems, "BOTTOMLEFT", 0, 0)
-			totems[1]:SetWidth(totemWidth)
-
-			for i = 2, MAX_TOTEMS do 
-
-				totems[i]:SetPoint("LEFT", totems[i - 1], "RIGHT", ns.config.spacing, 0)
-				totems[i]:SetWidth(totemWidth)
-
-			end
+			segment:SetHeight(TOTEM_HEIGHT)
 
 		end)
 		
