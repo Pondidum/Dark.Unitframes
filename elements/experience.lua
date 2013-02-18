@@ -5,10 +5,6 @@ ns.elements.experience = {
 	
 	create = function(self, unit)
 
-		if unit ~= "player" then
-			return
-		end
-
 		local experience = CreateFrame("StatusBar", nil, self)
 		experience:SetStatusBarTexture(core.textures.normal)
 		experience:SetStatusBarColor(0, 0.4, 1, .8)
@@ -41,10 +37,6 @@ ns.elements.experience = {
 	end,
 
 	layout = function(self, unit)
-
-		if unit ~= "player" then
-			return
-		end
 	
 		self.Experience:SetPoint("BOTTOMLEFT", DarkuiBar4, "TOPLEFT",0, 5)
 		self.Experience:SetPoint("BOTTOMRIGHT", DarkuiBar4, "TOPRIGHT",0, 5)
@@ -53,5 +45,9 @@ ns.elements.experience = {
 		self.Resting:SetPoint("CENTER", self.Health, "TOPLEFT", -2, 5) 
 		self.Resting:SetSize(28, 28)
 
+	end,
+
+	filter = function(self, unit)
+		return unit == "player"
 	end,
 }

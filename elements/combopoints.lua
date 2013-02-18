@@ -9,10 +9,6 @@ ns.elements.combopoints = {
 	
 	create = function(self, unit)
 
-		if unit ~= "player" then
-			return
-		end
-
 		local points = CreateFrame("Frame", nil, self)
 
 		points.unit = PlayerFrame.unit
@@ -43,4 +39,8 @@ ns.elements.combopoints = {
 
 	end,
 
+	filter = function(self, unit)
+		return unit == "player"
+	end,
+	
 }

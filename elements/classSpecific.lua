@@ -7,10 +7,6 @@ local blank =  {
 
 local getSpecific = function(unit)
 
-	if unit ~= "player" then
-		return blank
-	end
-
 	local class, classFile = UnitClass(unit)
 	local spec = ns.elements.specific[string.lower(classFile)]
 
@@ -30,6 +26,10 @@ ns.elements.specific = {
 
 		getSpecific(unit).layout(self, unit, ...)
 
+	end,
+
+	filter = function(self, unit)
+		return unit == "player"
 	end,
 
 }
