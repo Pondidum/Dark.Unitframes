@@ -75,30 +75,6 @@ local config = {
 		},
 
 	},
-
-	--[[units = {"player", "pet", "target", "focus", "targettarget", "focustarget", "boss", "raid"},
-	layout = {
-		player 			= { point = { "CENTER", UIParent, "CENTER", 0, -200 }, 			size = largeFrame 	},
-		target 			= { point = { "LEFT", UIParent, "CENTER", 200, -75 }, 			size = largeFrame 	},
-		focus 			= { point = { "RIGHT", UIParent, "CENTER", -200, -75 }, 		size = largeFrame 	},
-		pet 			= { point = { "RIGHT", "player", "LEFT", -45, 0 }, 				size = smallFrame 	},
-		targettarget 	= { point = { "LEFT", "target", "RIGHT", 45, 0 }, 				size = smallFrame 	},
-		focustarget 	= { point = { "RIGHT", "focus", "LEFT", -45, 0 }, 				size = smallFrame 	},
-		bossunit		= { point = { "TOPLEFT", "", "BOTTOMLEFT", 0, -spacing*2 },		size = smallFrame 	},
-		bossheader		= {	point = { "LEFT", UIParent, "LEFT", spacing, 0 }, 								},
-		raidunit 		= { point = { "TOP", 0, -spacing }, 							size = {132, 18} 	},
-		raidgroup 		= { point = { "TOP", "", "BOTTOM", 0, -spacing},									},
-		raidheader 		= { point = { "TOPRIGHT", MultiBarRightButton1, "TOPLEFT", -spacing, 0 },	 				},
-	},
-		elements = {
-			common = { "menu", "health", "power", "name", "castbar", "icons", "classSpecific", "combopoints", "debuffs", },  
-			player = { "experience" },
-			target = { "buffs" },
-			focus  = { "buffs" },
-			pet    = { "buffs", remove = { "debuffs" } },
-			raid   = { "range", remove = { "debuffs", "power", "castbar" } },
-			boss   = { remove = { "debuffs", "buffs" } },
-	}, ]]--
 	colors = {
 		power = {
 			["MANA"] = {0.31, 0.45, 0.63},
@@ -132,6 +108,9 @@ local config = {
 		}
 
 	},
+	auraWatch = {
+		120629, --huddle in terror
+	}
 
 }
 

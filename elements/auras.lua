@@ -72,10 +72,11 @@ ns.elements.buffs = {
 	layout = function(self)
 
 		local anchor = self.Debuffs or self.classSpecific or self.Health
-	
-		self.Buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
-		self.Buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-		self.Buffs:SetHeight(auraHeight)
+		local buffs = self.Buffs
+
+		buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+		buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+		buffs:SetHeight(auraHeight)
 		
 	end,
 
