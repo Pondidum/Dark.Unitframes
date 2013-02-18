@@ -3,6 +3,25 @@ local config = ns.config
 
 local elements = ns.elements
 
+local elementBase = { 
+	
+	create = function(self, unit)
+	end,
+	
+	layout = function(self, unit)
+	end,
+
+	filter = function(self, unit)
+		return true 
+	end,
+
+}
+
+local elementMeta = { __index = elementBase }
+
+for k,v in pairs(elements) do
+	setmetatable(v, elementMeta)
+end
 
 local runElement = function(self, ignoreElements, element, unit, ...)
 
@@ -30,7 +49,7 @@ local buildUnit = function(self, unit)
 
 	for name, element in pairs(ns.elements) do
 
-		if not tContains(unitConfig.hide, name) then
+		if element.filter(self, unit) and not tContains(unitConfig.hide, name) then
 			element.create(self, unit)
 		end
 
@@ -42,7 +61,7 @@ local buildUnit = function(self, unit)
 
 	for name, element in pairs(ns.elements) do
 
-		if not tContains(unitConfig.hide, name) then
+		if element.filter(self, unit) and not tContains(unitConfig.hide, name) then
 
 			local customLayout = unitConfig.customise[name] 
 

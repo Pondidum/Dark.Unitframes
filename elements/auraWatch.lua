@@ -48,4 +48,8 @@ ns.elements.aurawatch = {
 
 	end,
 
+	filter = function(self, unit)
+		return unit == "raid" or unit == "party"
+	end,
+
 }
