@@ -1,9 +1,40 @@
-	local addon, ns = ...
+local addon, ns = ...
 
 local spacing = 3
 local largeFrame = {237, 28}
-local smallFrame = {132, 28}
+local smallFrame = {147, 28}
 local raidFrame = {132, 18} 
+
+local customDebuffs = function(self, unit, base)
+
+	local debuffs = self.Debuffs
+	debuffs:SetPoint("TOPLEFT", self.Power, "BOTTOMLEFT", 0, -ns.config.spacing)
+	debuffs:SetPoint("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -ns.config.spacing)
+	debuffs:SetHeight(27)
+
+end
+
+local customBuffs = function(self, unit, base)
+
+	local anchor = self.classSpecific or self.Health
+	local buffs = self.Buffs
+
+	buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+	buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+	buffs:SetHeight(27)
+end
+
+local customCastBar = function(self, unit, base)
+
+	local anchor = self.Buffs or self.ClassSpecific or self.Health
+	local castbar = self.Castbar
+
+	castbar:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+	castbar:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+	castbar:SetHeight(16)
+
+end
+
 
 local config = {
 	spacing = spacing,
@@ -27,35 +58,67 @@ local config = {
 			size = largeFrame,
 			location = { "LEFT", UIParent, "CENTER", 200, -75 },
 			hide = { "classSpecific", "experience", "range"},
-			customise = {},
+			customise = {
+				debuffs = customDebuffs,
+				buffs = customBuffs,
+				castbar = customCastBar,
+			},
 		},
 		
 		focus = {
 			size = largeFrame,
 			location = { "RIGHT", UIParent, "CENTER", -200, -75 },
 			hide = { "classSpecific", "experience", "range"},
-			customise = {},
+			customise = {
+				debuffs = customDebuffs,
+				buffs = customBuffs,
+				castbar = customCastBar,
+			},
 		},
 
 		pet = {
 			size = smallFrame,
 			location = { "RIGHT", "player", "LEFT", -45, 0 },
 			hide = { "classSpecific", "experience", "range"},
-			customise = {},
+			customise = {
+				debuffs = customDebuffs,
+				buffs = customBuffs,
+				castbar = customCastBar,
+			},
 		},
 
 		targettarget = {
 			size = smallFrame,
 			location = { "LEFT", "target", "RIGHT", 45, 0 },
 			hide = { "classSpecific", "experience", "range"},
-			customise = {},
+			customise = {
+				debuffs =  function(self, unit, base)
+					customDebuffs(self, unit, base)
+					self.Debuffs.num = 5
+				end,
+				buffs = function(self, unit, base)
+					customBuffs(self, unit, base)
+					self.Buffs.num = 5
+				end,
+				castbar = customCastBar,
+			},
 		},
 		
 		focustarget = {
 			size = smallFrame,
 			location = { "RIGHT", "focus", "LEFT", -45, 0 },
 			hide = { "classSpecific", "experience", "range"},
-			customise = {},
+			customise = {
+				debuffs =  function(self, unit, base)
+					customDebuffs(self, unit, base)
+					self.Debuffs.num = 5
+				end,
+				buffs = function(self, unit, base)
+					customBuffs(self, unit, base)
+					self.Buffs.num = 5
+				end,
+				castbar = customCastBar,
+			},
 		},
 
 		raid = {
