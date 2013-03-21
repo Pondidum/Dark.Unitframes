@@ -62,9 +62,12 @@ ns.elements.castbar = {
 
 	layout = function(self)
 
-		self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 70)
-		self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 70)
-		self.Castbar:SetHeight(16)
+		local anchor = self.Buffs or self.ClassSpecific or self.Health
+		local castbar = self.Castbar
+
+		castbar:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
+		castbar:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
+		castbar:SetHeight(16)
 
 	end,
 

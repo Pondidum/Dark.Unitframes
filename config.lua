@@ -24,18 +24,6 @@ local customBuffs = function(self, unit, base)
 	buffs:SetHeight(27)
 end
 
-local customCastBar = function(self, unit, base)
-
-	local anchor = self.Buffs or self.ClassSpecific or self.Health
-	local castbar = self.Castbar
-
-	castbar:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
-	castbar:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-	castbar:SetHeight(16)
-
-end
-
-
 local config = {
 	spacing = spacing,
 	
@@ -46,11 +34,11 @@ local config = {
 			location = { "CENTER", UIParent, "CENTER", 0, -200 },
 			hide = { "buffs", "range" },
 			customise = {
-				--[[castbar = function(self, unit, base)
-					--base(self, unit)	--if you want most of the default looks...
-					self.Castbar:SetPoint("CENTER", self.Health, "TOP", 0, 150)
-					self.Castbar:SetSize(150, 26)
-				end,]]--
+				castbar = function(self, unit, base)							
+					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 70)
+					self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 70)
+					self.Castbar:SetHeight(16)
+				end,
 			},		
 		},
 
@@ -61,7 +49,6 @@ local config = {
 			customise = {
 				debuffs = customDebuffs,
 				buffs = customBuffs,
-				castbar = customCastBar,
 			},
 		},
 		
@@ -72,7 +59,6 @@ local config = {
 			customise = {
 				debuffs = customDebuffs,
 				buffs = customBuffs,
-				castbar = customCastBar,
 			},
 		},
 
@@ -83,7 +69,6 @@ local config = {
 			customise = {
 				debuffs = customDebuffs,
 				buffs = customBuffs,
-				castbar = customCastBar,
 			},
 		},
 
@@ -100,7 +85,6 @@ local config = {
 					customBuffs(self, unit, base)
 					self.Buffs.num = 5
 				end,
-				castbar = customCastBar,
 			},
 		},
 		
@@ -117,7 +101,6 @@ local config = {
 					customBuffs(self, unit, base)
 					self.Buffs.num = 5
 				end,
-				castbar = customCastBar,
 			},
 		},
 
