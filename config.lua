@@ -31,7 +31,7 @@ local config = {
 
 		player = {
 			size = largeFrame,
-			location = { "CENTER", UIParent, "CENTER", 0, -200 },
+			location = { "RIGHT", UIParent, "CENTER", -10, -230 },
 			hide = { "buffs", "range" },
 			customise = {
 				castbar = function(self, unit, base)							
@@ -44,7 +44,7 @@ local config = {
 
 		target = {
 			size = largeFrame,
-			location = { "LEFT", UIParent, "CENTER", 200, -75 },
+			location = { "LEFT", UIParent, "CENTER", 10, -230 },
 			hide = { "classSpecific", "experience", "range"},
 			customise = {
 				debuffs = customDebuffs,
@@ -156,6 +156,7 @@ local config = {
 	},
 	auraWatch = {
 		120629, --huddle in terror
+		136513,
 	}
 
 }
