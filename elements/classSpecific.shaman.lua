@@ -32,8 +32,10 @@ ns.elements.specific.shaman = {
 				local id = totems[i]:GetID()
 				local haveTotem, name, start, duration, icon = GetTotemInfo(id)
 			
-				totems[i]:SetValue(1 - ((GetTime() - start) / duration))
-				totems[i]:SetStatusBarColor(unpack(colors.totems[id]))
+				if haveTotem then 
+					totems[i]:SetValue(1 - ((GetTime() - start) / duration))
+					totems[i]:SetStatusBarColor(unpack(colors.totems[id]))
+				end
 
 			end
 
