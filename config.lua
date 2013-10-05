@@ -31,20 +31,25 @@ local config = {
 
 		player = {
 			size = largeFrame,
-			location = { "RIGHT", UIParent, "CENTER", -10, -230 },
+			location = { "RIGHT", UIParent, "CENTER", -100, -150 },
 			hide = { "buffs", "range" },
 			customise = {
 				castbar = function(self, unit, base)							
-					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 70)
-					self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 70)
+					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 27 + ns.config.spacing + ns.config.spacing)
+					self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 27 + ns.config.spacing + ns.config.spacing)
 					self.Castbar:SetHeight(16)
+				end,
+				debuffs =  function(self, unit, base)
+					customDebuffs(self, unit, base)
+					self.Debuffs['growth-x'] = "LEFT"
+					self.Debuffs.initialAnchor = "BOTTOMRIGHT"
 				end,
 			},		
 		},
 
 		target = {
 			size = largeFrame,
-			location = { "LEFT", UIParent, "CENTER", 10, -230 },
+			location = { "LEFT", UIParent, "CENTER", 100, -150 },
 			hide = { "classSpecific", "experience", "range"},
 			customise = {
 				debuffs = customDebuffs,
@@ -54,7 +59,7 @@ local config = {
 		
 		focus = {
 			size = largeFrame,
-			location = { "RIGHT", UIParent, "CENTER", -200, -75 },
+			location = { "TOP", "target", "BOTTOM", 0, -150 },
 			hide = { "classSpecific", "experience", "range"},
 			customise = {
 				debuffs = customDebuffs,
@@ -90,7 +95,7 @@ local config = {
 		
 		focustarget = {
 			size = smallFrame,
-			location = { "RIGHT", "focus", "LEFT", -45, 0 },
+			location = { "LEFT", "focus", "RIGHT", 45, 0 },
 			hide = { "classSpecific", "experience", "range"},
 			customise = {
 				debuffs =  function(self, unit, base)
