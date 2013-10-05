@@ -10,6 +10,7 @@ libs\oUF_Dark\oUF_Dark.xml
 libs\oUF_WarlockSpecBars\oUF_WarlockSpecBars.lua
 libs\oUF_Experience\oUF_Experience.lua
 libs\oUF_AuraWatch\oUF_AuraWatch.lua
+libs\oUF_Swing\oUF_Swing.lua
 
 config.lua
 initialise.lua
@@ -29,6 +30,7 @@ elements\range.lua
 elements\experience.lua
 elements\combopoints.lua
 elements\auraWatch.lua
+elements\swing.lua
 
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua
