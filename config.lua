@@ -73,7 +73,10 @@ local config = {
 			hide = { "classSpecific", "experience", "range"},
 			customise = {
 				debuffs = customDebuffs,
-				buffs = customBuffs,
+				buffs = function(self, unit, base)
+					customBuffs(self, unit, base)
+					self.Buffs.num = 5
+				end,
 			},
 		},
 
