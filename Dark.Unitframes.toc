@@ -31,6 +31,7 @@ elements\experience.lua
 elements\combopoints.lua
 elements\auraWatch.lua
 elements\swing.lua
+elements\role.lua
 
 elements\classSpecific.lua
 elements\classSpecific.deathknight.lua
