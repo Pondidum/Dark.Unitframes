@@ -62,9 +62,9 @@ ns.elements.specific.druid = {
 	create = function(self)
 
 		self.EclipseBar = createEclipseBar(self, unit)
-		self.DarkTotems = createMushrooms(self, unit)
+		-- self.DarkTotems = createMushrooms(self, unit)
 
-		self.classSpecific = self.DarkTotems
+		-- self.classSpecific = self.DarkTotems
 
 	end,
 
@@ -74,9 +74,9 @@ ns.elements.specific.druid = {
 		self.EclipseBar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, ns.config.spacing)
 		self.EclipseBar:SetHeight(ECLIPSE_HEIGHT)
 
-		self.DarkTotems:SetPoint("BOTTOMLEFT", self.EclipseBar, "TOPLEFT", 0, ns.config.spacing)
-		self.DarkTotems:SetPoint("BOTTOMRIGHT", self.EclipseBar, "TOPRIGHT", 0, ns.config.spacing)
-		self.DarkTotems:SetHeight(ECLIPSE_HEIGHT)
+		-- self.DarkTotems:SetPoint("BOTTOMLEFT", self.EclipseBar, "TOPLEFT", 0, ns.config.spacing)
+		-- self.DarkTotems:SetPoint("BOTTOMRIGHT", self.EclipseBar, "TOPRIGHT", 0, ns.config.spacing)
+		-- self.DarkTotems:SetHeight(ECLIPSE_HEIGHT)
 
 	end,
 
