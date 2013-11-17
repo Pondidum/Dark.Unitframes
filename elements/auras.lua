@@ -4,7 +4,7 @@ local core = Dark.core
 
 local UnitAura, UnitIsFriend = UnitAura, UnitIsFriend
 
-local auraCount = 8
+local auraCount = 5
 local auraHeight = 27
 
 local postCreateAura = function(element, button)

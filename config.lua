@@ -1,8 +1,10 @@
 local addon, ns = ...
 
+local auraHeight = 27
 local spacing = 3
 local largeFrame = {237, 28}
 local smallFrame = {147, 28}
+local tinyFrame = {80, auraHeight - spacing}
 local raidFrame = {132, 18} 
 
 local customDebuffs = function(self, unit, base)
@@ -10,7 +12,7 @@ local customDebuffs = function(self, unit, base)
 	local debuffs = self.Debuffs
 	debuffs:SetPoint("TOPLEFT", self.Power, "BOTTOMLEFT", 0, -ns.config.spacing)
 	debuffs:SetPoint("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -ns.config.spacing)
-	debuffs:SetHeight(27)
+	debuffs:SetHeight(auraHeight)
 
 end
 
@@ -21,7 +23,7 @@ local customBuffs = function(self, unit, base)
 
 	buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
 	buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-	buffs:SetHeight(27)
+	buffs:SetHeight(auraHeight)
 end
 
 local config = {
@@ -35,8 +37,8 @@ local config = {
 			hide = { "buffs", "range" },
 			customise = {
 				castbar = function(self, unit, base)							
-					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 27 + ns.config.spacing + ns.config.spacing)
-					self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 27 + ns.config.spacing + ns.config.spacing)
+					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, auraHeight + ns.config.spacing + ns.config.spacing)
+					self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, auraHeight + ns.config.spacing + ns.config.spacing)
 					self.Castbar:SetHeight(16)
 				end,
 				debuffs =  function(self, unit, base)
@@ -59,7 +61,7 @@ local config = {
 		
 		focus = {
 			size = largeFrame,
-			location = { "TOP", "target", "BOTTOM", 0, -150 },
+			location = { "LEFT", "target", "RIGHT", 45, 0 },
 			hide = { "classSpecific", "experience", "range"},
 			customise = {
 				debuffs = customDebuffs,
@@ -81,35 +83,15 @@ local config = {
 		},
 
 		targettarget = {
-			size = smallFrame,
-			location = { "LEFT", "target", "RIGHT", 45, 0 },
-			hide = { "classSpecific", "experience", "range"},
-			customise = {
-				debuffs =  function(self, unit, base)
-					customDebuffs(self, unit, base)
-					self.Debuffs.num = 5
-				end,
-				buffs = function(self, unit, base)
-					customBuffs(self, unit, base)
-					self.Buffs.num = 5
-				end,
-			},
+			size = tinyFrame,
+			location = { "BOTTOMRIGHT", "target", "TOPRIGHT", 0, spacing + 2 },
+			hide = { "classSpecific", "experience", "range", "buffs", "debuffs", "castbar", "power"},
 		},
 		
 		focustarget = {
-			size = smallFrame,
-			location = { "LEFT", "focus", "RIGHT", 45, 0 },
-			hide = { "classSpecific", "experience", "range"},
-			customise = {
-				debuffs =  function(self, unit, base)
-					customDebuffs(self, unit, base)
-					self.Debuffs.num = 5
-				end,
-				buffs = function(self, unit, base)
-					customBuffs(self, unit, base)
-					self.Buffs.num = 5
-				end,
-			},
+			size = tinyFrame,
+			location = { "BOTTOMRIGHT", "focus", "TOPRIGHT", 0, spacing + 2 },
+			hide = { "classSpecific", "experience", "range", "buffs", "debuffs", "castbar", "power"},
 		},
 
 		raid = {
