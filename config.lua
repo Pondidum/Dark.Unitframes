@@ -5,7 +5,7 @@ local spacing = 3
 local largeFrame = {237, 28}
 local smallFrame = {147, 28}
 local tinyFrame = {80, auraHeight - spacing}
-local raidFrame = {132, 18} 
+local raidFrame = {132, 18}
 
 local customDebuffs = function(self, unit, base)
 
@@ -28,7 +28,7 @@ end
 
 local config = {
 	spacing = spacing,
-	
+
 	units = {
 
 		player = {
@@ -36,7 +36,7 @@ local config = {
 			location = { "RIGHT", UIParent, "CENTER", -100, -150 },
 			hide = { "buffs", "range" },
 			customise = {
-				castbar = function(self, unit, base)							
+				castbar = function(self, unit, base)
 					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, auraHeight + ns.config.spacing + ns.config.spacing)
 					self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, auraHeight + ns.config.spacing + ns.config.spacing)
 					self.Castbar:SetHeight(16)
@@ -46,7 +46,7 @@ local config = {
 					self.Debuffs['growth-x'] = "LEFT"
 					self.Debuffs.initialAnchor = "BOTTOMRIGHT"
 				end,
-			},		
+			},
 		},
 
 		target = {
@@ -58,7 +58,7 @@ local config = {
 				buffs = customBuffs,
 			},
 		},
-		
+
 		focus = {
 			size = largeFrame,
 			location = { "LEFT", "target", "RIGHT", 45, 0 },
@@ -87,7 +87,7 @@ local config = {
 			location = { "BOTTOMRIGHT", "target", "TOPRIGHT", 0, spacing + 2 },
 			hide = { "classSpecific", "experience", "range", "buffs", "debuffs", "castbar", "power"},
 		},
-		
+
 		focustarget = {
 			size = tinyFrame,
 			location = { "BOTTOMRIGHT", "focus", "TOPRIGHT", 0, spacing + 2 },
@@ -135,7 +135,7 @@ local config = {
 			SHAMAN      = {  41/255,  79/255, 155/255 },
 			WARLOCK     = { 148/255, 130/255, 201/255 },
 			WARRIOR     = { 199/255, 156/255, 110/255 },
-		}, 
+		},
 		totems = {
 			[1] = { 0.752,	0.172,	0.02  },		-- fire
 			[2] = { 0.441,  0.280,  0.1   }, 		-- earth
