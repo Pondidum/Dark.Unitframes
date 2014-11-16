@@ -38,8 +38,8 @@ ns.elements.experience = {
 
 	layout = function(self, unit)
 
-		self.Experience:SetPoint("TOPLEFT", MainMenuBar, "BOTTOMLEFT", 0, -5)
-		self.Experience:SetPoint("TOPRIGHT", MainMenuBar, "BOTTOMRIGHT", 0, -5)
+		self.Experience:SetPoint("TOPLEFT", MainMenuBar, "BOTTOMLEFT", 0, -2)
+		self.Experience:SetPoint("TOPRIGHT", MainMenuBar, "BOTTOMRIGHT", 0, -2)
 		self.Experience:SetHeight(5)
 
 		self.Resting:SetPoint("CENTER", self.Health, "TOPLEFT", -2, 5)
