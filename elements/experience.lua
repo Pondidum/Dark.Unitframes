@@ -2,7 +2,7 @@ local addon, ns = ...
 local core = Dark.core
 
 ns.elements.experience = {
-	
+
 	create = function(self, unit)
 
 		local experience = CreateFrame("StatusBar", nil, self)
@@ -30,19 +30,19 @@ ns.elements.experience = {
 		local resting = experience:CreateTexture(nil, "OVERLAY")
 		resting:SetTexture([=[Interface\CharacterFrame\UI-StateIcon]=])
 		resting:SetTexCoord(0, 0.5, 0, 0.421875)
-	
+
 		self.Resting = resting
 		self.Experience = experience
-	
+
 	end,
 
 	layout = function(self, unit)
-	
-		self.Experience:SetPoint("BOTTOMLEFT", DarkuiBar4, "TOPLEFT",0, 5)
-		self.Experience:SetPoint("BOTTOMRIGHT", DarkuiBar4, "TOPRIGHT",0, 5)
+
+		self.Experience:SetPoint("TOPLEFT", MainMenuBar, "BOTTOMLEFT", 0, -5)
+		self.Experience:SetPoint("TOPRIGHT", MainMenuBar, "BOTTOMRIGHT", 0, -5)
 		self.Experience:SetHeight(5)
 
-		self.Resting:SetPoint("CENTER", self.Health, "TOPLEFT", -2, 5) 
+		self.Resting:SetPoint("CENTER", self.Health, "TOPLEFT", -2, 5)
 		self.Resting:SetSize(28, 28)
 
 	end,
