@@ -6,7 +6,8 @@ local boot = function()
 	local dark = Darker
 
 	ns.lib = {
-		media = dark.media
+		media = dark.media,
+		style = dark.style
 	}
 
 	ns.elements = {}
