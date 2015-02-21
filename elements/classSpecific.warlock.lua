@@ -1,19 +1,19 @@
 local addon, ns = ...
-local core = Dark.core
-local style = core.style
+
+local textures = ns.lib.media.textures
+local style = ns.lib.style
 
 ns.elements.specific.warlock = {
-	
+
 	create = function(self)
 
 		local frame = CreateFrame("Frame", nil, self)
-		
-		style.addBackground(frame)
-		style.addShadow(frame)
+
+		style:frame(frame)
 
 		ns.builder.segments("StatusBar", frame, 4, function(segment, i)
-			
-			segment:SetStatusBarTexture(core.textures.normal)
+
+			segment:SetStatusBarTexture(textures.normal)
 			segment:GetStatusBarTexture():SetHorizTile(false)
 			segment:SetHeight(8)
 
@@ -33,7 +33,7 @@ ns.elements.specific.warlock = {
 	end,
 
 	layout = function(self)
-	
+
 		self.WarlockSpecBars:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, ns.config.spacing)
 		self.WarlockSpecBars:SetPoint("BOTTOMRIGHT", self.Health, "BOTTOMRIGHT", 0, ns.config.spacing)
 		self.WarlockSpecBars:SetHeight(8)
