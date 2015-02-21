@@ -1,6 +1,7 @@
 local addon, ns = ...
-local core = Dark.core
 
+local fonts = ns.lib.media.fonts
+local textures = ns.lib.media.textures
 
 local UnitAura, UnitIsFriend = UnitAura, UnitIsFriend
 
@@ -16,7 +17,7 @@ local postCreateAura = function(element, button)
 
 	button.count:SetPoint("BOTTOMRIGHT", 3, 3)
 	button.count:SetJustifyH("RIGHT")
-	button.count:SetFont(core.fonts.unitframes, 12, "THICKOUTLINE")
+	button.count:SetFont(fonts.unitframes, 12, "THICKOUTLINE")
 	button.count:SetTextColor(0.84, 0.75, 0.65)
 	button.count:SetDrawLayer('OVERLAY')
 
@@ -28,13 +29,12 @@ local postCreateAura = function(element, button)
 	button.Glow = CreateFrame("Frame", nil, button)
 	button.Glow:SetPoint("TOPLEFT", button, "TOPLEFT", -1, 1)
 	button.Glow:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 1, -1)
-	button.Glow:SetFrameStrata("BACKGROUND")	
-	button.Glow:SetBackdrop{edgeFile =  core.textures.shadow, edgeSize = 3, insets = {left = 0, right = 0, top = 0, bottom = 0}}
+	button.Glow:SetFrameStrata("BACKGROUND")
+	button.Glow:SetBackdrop{edgeFile = textures.shadow, edgeSize = 3, insets = {left = 0, right = 0, top = 0, bottom = 0}}
 	button.Glow:SetBackdropColor(0, 0, 0, 0)
 	button.Glow:SetBackdropBorderColor(0, 0, 0)
 
 end
-
 
 local postUpdateAura = function(self, unit, icon, index, offset)
 
@@ -64,7 +64,7 @@ ns.elements.buffs = {
 
 		buffs.PostCreateIcon = postCreateAura
 		buffs.PostUpdateIcon = postUpdateAura
-		
+
 		self.Buffs = buffs
 
 	end,
@@ -77,7 +77,7 @@ ns.elements.buffs = {
 		buffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
 		buffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
 		buffs:SetHeight(auraHeight)
-		
+
 	end,
 
 }
@@ -107,8 +107,8 @@ ns.elements.debuffs = {
 		self.Debuffs:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
 		self.Debuffs:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
 		self.Debuffs:SetHeight(auraHeight)
-	
+
 	end,
-	
+
 }
 

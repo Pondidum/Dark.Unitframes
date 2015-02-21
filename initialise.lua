@@ -3,6 +3,12 @@ local oUF = ns.oUF or oUF
 
 local boot = function()
 
+	local dark = Darker
+
+	ns.lib = {
+		media = dark.media
+	}
+
 	ns.elements = {}
 	ns.tags = {}
 
@@ -13,7 +19,7 @@ local boot = function()
 	setmetatable(ns.config.colors.power, { __index = oUF.colors.power })
 	setmetatable(ns.config.colors.class, { __index = oUF.colors.class })
 
-	local blank = { 
+	local blank = {
 		__index = {
 			hide = {},
 			customise = {},
