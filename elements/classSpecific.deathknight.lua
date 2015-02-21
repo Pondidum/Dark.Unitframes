@@ -1,11 +1,12 @@
 local addon, ns = ...
-local core = Dark.core
-local style = core.style
+
+local style = ns.lib.style
+local textures = ns.lib.media.textures
 
 local RUNE_HEIGHT = 8
 
 ns.elements.specific.deathknight = {
-	
+
 	create = function(self, unit)
 
 		local runes = CreateFrame("Frame", nil, self)
@@ -15,11 +16,10 @@ ns.elements.specific.deathknight = {
 
 			local rune = CreateFrame("StatusBar", nil, runes)
 
-			rune:SetStatusBarTexture(core.textures.normal)
+			rune:SetStatusBarTexture(textures.normal)
 			rune:GetStatusBarTexture():SetHorizTile(false)
 
-			style.addBackground(rune)
-			style.addShadow(rune)
+			style:frame(rune)
 
 			rune:SetHeight(RUNE_HEIGHT)
 
@@ -43,7 +43,7 @@ ns.elements.specific.deathknight = {
 
 		self.DarkRunes = runes
 		self.classSpecific = runes
-		
+
 	end,
 
 	layout = function(self)
@@ -52,7 +52,7 @@ ns.elements.specific.deathknight = {
 
 		self.DarkRunes:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, ns.config.spacing)
 		self.DarkRunes:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, ns.config.spacing)
-		
+
 	end,
 
 }
