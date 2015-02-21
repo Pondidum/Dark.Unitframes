@@ -1,24 +1,24 @@
 local addon, ns = ...
-local core = Dark.core
-local style = core.style
+
+local textures = ns.lib.media.textures
+local style = ns.lib.style
 
 local TOTEM_HEIGHT = 8
 
 ns.elements.specific.shaman = {
-	
+
 	create = function(self, unit)
-		
+
 		local totems = CreateFrame("Frame", nil, self)
 
 		ns.builder.autoSegments("StatusBar", totems, MAX_TOTEMS, ns.config.spacing, function(segment, i)
 
 			segment:SetMinMaxValues(0, 1)
-			segment:SetStatusBarTexture(core.textures.normal)
+			segment:SetStatusBarTexture(textures.normal)
 			segment:GetStatusBarTexture():SetHorizTile(false)
 
-			style.addShadow(segment)
-			style.addBackground(segment)
-			
+			style:frame(segment)
+
 			segment:SetHeight(TOTEM_HEIGHT)
 
 		end)
@@ -31,8 +31,8 @@ ns.elements.specific.shaman = {
 
 				local id = totems[i]:GetID()
 				local haveTotem, name, start, duration, icon = GetTotemInfo(id)
-			
-				if haveTotem then 
+
+				if haveTotem then
 					totems[i]:SetValue(1 - ((GetTime() - start) / duration))
 					totems[i]:SetStatusBarColor(unpack(colors.totems[id]))
 				end
@@ -40,10 +40,10 @@ ns.elements.specific.shaman = {
 			end
 
 		end)
-		
+
 		self.Totems = totems
 		self.classSpecific = totems
-		
+
 	end,
 
 	layout = function(self)
