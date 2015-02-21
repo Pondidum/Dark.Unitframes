@@ -1,11 +1,10 @@
 local addon, ns = ...
 local config = ns.config
-local core = Dark.core
 
 local AURA_HEIGHT = 15
 
 ns.elements.aurawatch = {
-	
+
 	create = function(self)
 
 		local auras = CreateFrame("Frame", nil, self)
@@ -16,8 +15,8 @@ ns.elements.aurawatch = {
 		auras.customIcons = true
 		auras.icons = {}
 
-		for i, spellID in ipairs(config.auraWatch) do 
-			
+		for i, spellID in ipairs(config.auraWatch) do
+
 			local icon = CreateFrame("Frame", nil, auras)
 			icon.spellID = spellID
 			icon.anyUnit = true
@@ -29,7 +28,7 @@ ns.elements.aurawatch = {
 			local tex = icon:CreateTexture(nil, "OVERLAY")
 			tex:SetAllPoints(icon)
 			tex:SetTexCoord(.08, .92, .08, .92)
-			tex:SetTexture(GetSpellTexture(spellID)) --core.textures.normal)
+			tex:SetTexture(GetSpellTexture(spellID))
 
 			auras.icons[spellID] = icon
 
