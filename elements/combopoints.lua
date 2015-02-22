@@ -1,6 +1,6 @@
 local addon, ns = ...
-local core = Dark.core
-local style = core.style
+
+local style = ns.lib.style
 
 local POINT_HEIGHT = 8
 local NUM_COMBO_POINTS = 5
@@ -15,8 +15,7 @@ ns.elements.combopoints = {
 
 		ns.builder.autoSegments("Frame", points, NUM_COMBO_POINTS, ns.config.spacing, function(segment)
 
-			style.addBackground(segment)
-			style.addShadow(segment)
+			style:frame(segment)
 
 			segment.bg:SetBackdropColor(0.65, 0.63, 0.35, 0.6)
 			segment:SetHeight(POINT_HEIGHT)
