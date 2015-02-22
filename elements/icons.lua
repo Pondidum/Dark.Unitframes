@@ -1,18 +1,19 @@
 local addon, ns = ...
-local core = Dark.core
+
+local textures = ns.lib.media.textures
 
 ns.elements.raidIcon = {
 
 	create = function(self)
 
-		self.RaidIcon = self:CreateTexture(nil, "OVERLAY")	
-		self.Leader = self:CreateTexture(nil, "OVERLAY")	
+		self.RaidIcon = self:CreateTexture(nil, "OVERLAY")
+		self.Leader = self:CreateTexture(nil, "OVERLAY")
 		self.MasterLooter = self:CreateTexture(nil, "OVERLAY")
 		self.Combat = self:CreateTexture(nil, "OVERLAY")
 
-		self.RaidIcon:SetTexture(core.textures.raidmarks) -- thx hankthetank for texture
+		self.RaidIcon:SetTexture(textures.raidmarks) -- thx hankthetank for texture
 		self.Combat:SetVertexColor(0.69, 0.31, 0.31)
-	
+
 	end,
 
 	layout = function(self)
@@ -21,7 +22,7 @@ ns.elements.raidIcon = {
 		self.RaidIcon:SetHeight(20)
 		self.RaidIcon:SetWidth(20)
 		self.RaidIcon:SetPoint("TOP", 0, 11)
-		
+
 		self.Leader:SetParent(self.Health)
 		self.Leader:SetHeight(14)
 		self.Leader:SetWidth(14)
@@ -39,5 +40,4 @@ ns.elements.raidIcon = {
 
 	end,
 
-}	
-
+}
