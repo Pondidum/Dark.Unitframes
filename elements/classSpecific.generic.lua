@@ -13,19 +13,9 @@ local composition = {
 
 		ns.builder.segments("Frame", bars, 5, function(segment)
 
-			local border = CreateFrame("Frame", nil, segment)
-
-			border:SetFrameLevel(1)
-			border:SetFrameStrata(segment:GetFrameStrata())
-			border:SetPoint("TOPLEFT", -3, 3)
-			border:SetPoint("BOTTOMLEFT", -3, -3)
-			border:SetPoint("TOPRIGHT", 3, 3)
-			border:SetPoint("BOTTOMRIGHT", 3, -3)
-
 			style:background(segment)
-			style:border(border)
+			style:border(segment)
 
-			segment.border = border
 			segment:SetHeight(8)
 
 		end)
