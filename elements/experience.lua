@@ -1,12 +1,14 @@
 local addon, ns = ...
-local core = Dark.core
+
+local style = ns.lib.style
+local textures = ns.lib.media.textures
 
 ns.elements.experience = {
 
 	create = function(self, unit)
 
 		local experience = CreateFrame("StatusBar", nil, self)
-		experience:SetStatusBarTexture(core.textures.normal)
+		experience:SetStatusBarTexture(textures.normal)
 		experience:SetStatusBarColor(0, 0.4, 1, .8)
 
 		experience:SetFrameLevel(10)
@@ -23,9 +25,9 @@ ns.elements.experience = {
 		experience.Rested = CreateFrame('StatusBar', nil, self)
 		experience.Rested:SetParent(experience)
 		experience.Rested:SetAllPoints(experience)
-		experience.Rested:SetStatusBarTexture(core.textures.normal)
+		experience.Rested:SetStatusBarTexture(textures.normal)
 
-		core.style.addShadow(experience.Rested)
+		style:border(experience.Rested)
 
 		local resting = experience:CreateTexture(nil, "OVERLAY")
 		resting:SetTexture([=[Interface\CharacterFrame\UI-StateIcon]=])
