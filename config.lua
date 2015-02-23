@@ -111,7 +111,7 @@ local config = {
 		},
 
 	},
-	colors = Dark.core.colors,
+	colors = Darker.media.colors,
 	auraWatch = {
 		120629, --huddle in terror
 		136513,
