@@ -1,33 +1,33 @@
 local addon, ns = ...
-local core = Dark.core
-local style = core.style
+
+local style = ns.lib.style
+local textures = ns.lib.media.textures
 
 ns.elements.swing = {
-	
+
 	create = function(self, unit)
 
 		local _, class = UnitClass(unit)
 		local color = self.colors.class[class]
 
 		local swing = CreateFrame("Frame", nil, self)
-		style.addShadow(swing)
-		style.addBackground(swing)
+		style:frame(swing)
 
 		local twoHand = CreateFrame("StatusBar", nil, swing)
 		twoHand:SetAllPoints(swing)
-		twoHand:SetStatusBarTexture(core.textures.normal)
+		twoHand:SetStatusBarTexture(textures.normal)
 		twoHand:SetStatusBarColor(unpack(color))
 		twoHand:Hide()
 
 		local mainHand = CreateFrame("StatusBar", nil, swing)
 		mainHand:SetAllPoints(swing)
-		mainHand:SetStatusBarTexture(core.textures.normal)
+		mainHand:SetStatusBarTexture(textures.normal)
 		mainHand:SetStatusBarColor(unpack(color))
 		mainHand:Hide()
-		
+
 		local offHand = CreateFrame("StatusBar", nil, swing)
 		offHand:SetAllPoints(swing)
-		offHand:SetStatusBarTexture(core.textures.normal)
+		offHand:SetStatusBarTexture(textures.normal)
 		offHand:SetStatusBarColor(unpack(color))
 		offHand:Hide()
 
@@ -37,7 +37,7 @@ ns.elements.swing = {
 
 		swing.hideOoc = true
 		swing:Hide()
-		
+
 	 	self.Swing = swing
 
 	end,
