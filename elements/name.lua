@@ -1,13 +1,14 @@
 local addon, ns = ...
-local core = Dark.core
+
+local fonts = ns.lib.media.fonts
 
 ns.elements.name = {
-	
+
 	create = function(self)
 
-		local name =  core.ui.createFont(self, core.fonts.unitframes, 12, "OUTLINE")
+		local name = fonts:create(self, fonts.unitframes, 12, "OUTLINE")
 		name:SetTextColor(1, 1, 1)
-		name:SetJustifyH("LEFT")	
+		name:SetJustifyH("LEFT")
 
 		self.Name = name
 		self:Tag(name, '[name]')
