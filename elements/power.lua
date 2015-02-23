@@ -1,32 +1,32 @@
 local addon, ns = ...
-local core = Dark.core
-local style = core.style
+
+local style = ns.lib.style
+local textures = ns.lib.media.textures
 
 ns.elements.power = {
-	
+
 	create = function(self)
 
 		local power = CreateFrame('StatusBar', nil, self)
 
 		power.frequentUpdates = true
 		power.Smooth = true
-		
-		power.colorDisconnected = true	
+
+		power.colorDisconnected = true
 		power.colorTapping = true
 		power.colorPower = true
-		
-		power:SetStatusBarTexture(core.textures.normal)
 
-		style.addShadow(power)
-		style.addBackground(power)
+		power:SetStatusBarTexture(textures.normal)
+
+		style:frame(power)
 
 		local bg = power:CreateTexture(nil, 'BORDER')
 		bg:SetAllPoints(power)
-		bg:SetTexture(core.textures.normal)
+		bg:SetTexture(textures.normal)
 		bg.multiplier = 0.3
 
 		power.bg = bg
-		
+
 		self.Power = power
 
 	end,
