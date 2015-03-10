@@ -2,9 +2,9 @@ local addon, ns = ...
 
 local auraHeight = 27
 local spacing = 3
-local largeFrame = {237, 28}
-local smallFrame = {147, 28}
-local tinyFrame = {80, auraHeight - spacing}
+local largeFrame = {237, 18}
+local smallFrame = {147, 18}
+local tinyFrame = {80, 18}
 local raidFrame = {132, 18}
 
 local customDebuffs = function(self, unit, base)
