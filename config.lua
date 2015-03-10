@@ -34,7 +34,7 @@ local config = {
 		player = {
 			size = largeFrame,
 			location = { "RIGHT", UIParent, "CENTER", -100, -150 },
-			hide = { "buffs", "range" },
+			hide = { "buffs", "range", "name" },
 			customise = {
 				castbar = function(self, unit, base)
 					self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, auraHeight + ns.config.spacing + ns.config.spacing)
