@@ -23,6 +23,8 @@ local composition = {
 		--i cant think of a better way of doing this without hardcoding widths, or creating surplus frames
 		bars.PostUpdate = function(elements, current, max, changed)
 
+			max = max or 0
+
 			local w = elements:GetWidth()
 			local totemWidth = (w - (ns.config.spacing * (max - 1) )) / max
 
