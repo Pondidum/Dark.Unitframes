@@ -22,16 +22,25 @@ local OnUpdate = function(self, elapsed)
 	end
 end
 
+local getRuneCooldown = function(rid)
+	local currentStart, currentDuration, currentReady = GetRuneCooldown(rid)
+
+	return currentStart or 0, currentDuration or 0, currentReady
+end
+
+local getRuneType = function(rid)
+	return GetRuneType(rid) or 1
+end
 
 local UpdateType = function(self, event, rid, alt)
 
 	local otherID = rid + 1
 	if rid % 2 == 0 then
-		otherID = rid - 1 
+		otherID = rid - 1
 	end
 
-	local currentStart, currentDuration, currentReady = GetRuneCooldown(rid)
-	local otherStart, otherDuration, otherReady = GetRuneCooldown(otherID)
+	local currentStart, currentDuration, currentReady = getRuneCooldown(rid)
+	local otherStart, otherDuration, otherReady = getRuneCooldown(otherID)
 
 	local time = GetTime()
 
@@ -46,8 +55,8 @@ local UpdateType = function(self, event, rid, alt)
 		rune, other = other, rune
 	end
 
-	rune:SetStatusBarColor(unpack(self.colors.runes[GetRuneType(rid)]))
-	other:SetStatusBarColor(unpack(self.colors.runes[GetRuneType(otherID)]))
+	rune:SetStatusBarColor(unpack(self.colors.runes[getRuneType(rid)]))
+	other:SetStatusBarColor(unpack(self.colors.runes[getRuneType(otherID)]))
 
 end
 
@@ -55,19 +64,18 @@ local UpdateRune = function(self, event, rid)
 
 	local otherID = rid + 1
 	if rid % 2 == 0 then
-		otherID = rid - 1 
+		otherID = rid - 1
 	end
 
-	local currentStart, currentDuration, currentReady = GetRuneCooldown(rid)
-	local otherStart, otherDuration, otherReady = GetRuneCooldown(otherID)
+	local currentStart, currentDuration, currentReady = getRuneCooldown(rid)
+	local otherStart, otherDuration, otherReady = getRuneCooldown(otherID)
 
 	local time = GetTime()
-
 	local rune = self.DarkRunes[runemap[rid]]
 	local other = self.DarkRunes[runemap[otherID]]
 
 	if rune and other then
-		
+
 		if rid > otherID then
 			rune, other = other, rune
 		end
@@ -92,7 +100,7 @@ local UpdateRune = function(self, event, rid)
 		end
 
 		if otherReady then
-			other:SetMinMaxValues(0, 1)  
+			other:SetMinMaxValues(0, 1)
 			other:SetValue(1)
 			other:SetScript("OnUpdate", nil)
 		else
@@ -105,7 +113,7 @@ local UpdateRune = function(self, event, rid)
 				other:SetValue(0)
 			end
 		end
-		
+
 		UpdateType(self, event, rid)
 
 	end
