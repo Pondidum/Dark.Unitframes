@@ -43,7 +43,7 @@ local buildUnit = function(self, unit)
 	self:SetScript("OnEnter", UnitFrame_OnEnter)
 	self:SetScript("OnLeave", UnitFrame_OnLeave)
 
-	self:SetAlpha(0.5)
+	self:SetAlpha(0.8)
 	self.colors = config.colors
 	local configUnit = unit:gsub("%d", '')
 	local unitConfig = config.units[configUnit]
