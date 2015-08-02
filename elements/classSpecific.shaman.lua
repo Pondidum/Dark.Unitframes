@@ -3,43 +3,37 @@ local addon, ns = ...
 local textures = ns.lib.media.textures
 local style = ns.lib.style
 
-local TOTEM_HEIGHT = 8
+local TOTEM_HEIGHT = 25
 
 ns.elements.specific.shaman = {
 
 	create = function(self, unit)
 
+		local spacing = ns.config.spacing
 		local totems = CreateFrame("Frame", nil, self)
 
-		ns.builder.autoSegments("StatusBar", totems, MAX_TOTEMS, ns.config.spacing, function(segment, i)
+		local middle = MAX_TOTEMS / 2
 
-			segment:SetMinMaxValues(0, 1)
-			segment:SetStatusBarTexture(textures.normal)
-			segment:GetStatusBarTexture():SetHorizTile(false)
+		for index = 1, MAX_TOTEMS do
 
-			style:frame(segment)
+			local totem = CreateFrame('Frame', nil, totems)
+			totem:SetSize(TOTEM_HEIGHT, TOTEM_HEIGHT)
+			totem:SetPoint('BOTTOM', totems, 'BOTTOM', ((index - middle) * (totem:GetWidth() + spacing)) - ((totem:GetWidth() + spacing) / 2) , 0)
+			style:frame(totem)
 
-			segment:SetHeight(TOTEM_HEIGHT)
+			local icon = totem:CreateTexture(nil, "OVERLAY")
+			icon:SetTexCoord(.08, .92, .08, .92)
+			icon:SetAllPoints()
 
-		end)
+			local cd = CreateFrame("Cooldown", nil, totem, "CooldownFrameTemplate")
+			cd:SetAllPoints()
+			cd:SetReverse(true)
 
-		local colors = self.colors
+			totem.Icon = icon
+			totem.Cooldown = cd
 
-		totems:SetScript("OnUpdate", function(self)
-
-			for i = 1, MAX_TOTEMS do
-
-				local id = totems[i]:GetID()
-				local haveTotem, name, start, duration, icon = GetTotemInfo(id)
-
-				if haveTotem then
-					totems[i]:SetValue(1 - ((GetTime() - start) / duration))
-					totems[i]:SetStatusBarColor(unpack(colors.totems[id]))
-				end
-
-			end
-
-		end)
+			totems[index] = totem
+		end
 
 		self.Totems = totems
 		self.classSpecific = totems
