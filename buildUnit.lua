@@ -3,16 +3,16 @@ local config = ns.config
 
 local elements = ns.elements
 
-local elementBase = { 
-	
+local elementBase = {
+
 	create = function(self, unit)
 	end,
-	
+
 	layout = function(self, unit)
 	end,
 
 	filter = function(self, unit)
-		return true 
+		return true
 	end,
 
 }
@@ -43,7 +43,7 @@ local buildUnit = function(self, unit)
 	self:SetScript("OnEnter", UnitFrame_OnEnter)
 	self:SetScript("OnLeave", UnitFrame_OnLeave)
 
-	self:SetAlpha(0.8)
+	self:SetAlpha(1)
 	self.colors = config.colors
 	local configUnit = unit:gsub("%d", '')
 	local unitConfig = config.units[configUnit]
@@ -64,13 +64,13 @@ local buildUnit = function(self, unit)
 
 		if element.filter(self, unit) and not tContains(unitConfig.hide, name) then
 
-			local customLayout = unitConfig.customise[name] 
+			local customLayout = unitConfig.customise[name]
 
 			if customLayout then
 				customLayout(self, unit, element.layout)
 			else
 				element.layout(self, unit)
-			end 
+			end
 
 		end
 
