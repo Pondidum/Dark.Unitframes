@@ -7,7 +7,8 @@ local boot = function()
 
 	ns.lib = {
 		media = dark.media,
-		style = dark.style
+		style = dark.style,
+		events = dark.events,
 	}
 
 	ns.elements = {}
